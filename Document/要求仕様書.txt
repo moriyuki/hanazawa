@@ -54,6 +54,7 @@ Windows端末はあるものとする。
 WindowsPhone対応
 Universal　アプリで開発
 無料アプリであること
+<藤村>開発者なら簡単に使えること
 広告表示について了解してもらう
 WindowsStoreからアプリ利用可能
 要調査
