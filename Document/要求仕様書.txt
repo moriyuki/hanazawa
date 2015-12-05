@@ -14,6 +14,7 @@
 - Windows Universal Application
 REST API を使ってみる
 仕様書作成、テスト仕様書作成
+かっこいいUIがいい！
 
 目的：
 自分の仕事を簡単に漏れなく管理したい。そんなツールが欲しい。
