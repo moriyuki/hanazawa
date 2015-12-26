@@ -1,7 +1,11 @@
 詳細仕様書　hanazawaプロジェクト
 
 ## クラス構成
+- IView interface
+- IModel interface
+
 - main viewクラス
+ClassName:MainPage
 起動時に表示され、チケット一覧を表示する
 
 コンストラクタでShowList()を実行
@@ -16,20 +20,24 @@ ShowList()
 終了時イベント（window closeイベント）レイズ
 チケット（文字列）クリックイベント　detailviewを表示
 
-- detail view クラス
+- detail view クラスClass
+Name:DetailViewClass
 チケットの詳細を表示する
 バリデーションチェックを行う
 変更箇所をモデルに書き込む
 
 - setting view クラス(２次イテレーション)
+Name:SettingViewClass
 アプリの設定情報を表示する
 バリデーションチェックを行う
 
 - setting data controlクラス(２次イテレーション)
+Name:SettingModelClass
 設定情報の読み書きを行う
 singltonでの開発を検討
 
 - redmine session クラス(２次イテレーション)
+Name:SessionControllerClass
 サーバとの接続を管理する
 
 -- 既に割り当てられているプロジェクトを一つ選び、そのチケット一覧を読み込む
@@ -49,6 +57,7 @@ singltonでの開発を検討
 ー＞
 
 - mainクラス
+Name:App
 起動時にインスタンスが作られるクラス。すべてのクラスを管理する。
 
 コンストラクタにて
@@ -72,7 +81,9 @@ main view class　closedイベントの処理
 4.自身の終了処理を行う
 
 - モデルクラス
+Name:ModelClass
 チケット一覧、チケット詳細など、表示するすべてのデータを保持する
+データベースとのアクセスを行う
 xmlでexportする
 Singletonで実装
 
