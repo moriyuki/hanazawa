@@ -25,6 +25,9 @@ namespace App1
         public MainPage()
         {
             this.InitializeComponent();
+
+            StoreManager sm = new StoreManager();
+            // sm.createDataFile();
         }
     }
 }

@@ -11,8 +11,10 @@ namespace App1
     // ローカルデータ管理クラス
     class StoreManager
     {
+        private const String taskDataPath = "./../config/taskdata.xml";
+
         // ローカルデータファイルが無いときに新規作成する
-        void createDataFile()
+        public void createDataFile()
         {
             XmlDocument datafile = new XmlDocument();
 
@@ -29,14 +31,36 @@ namespace App1
 
             root.AppendChild(element);
 
-            using (StreamWriter writer = File.CreateText("sample.xml"))
-            {
-                datafile.Save(writer);
-            }
+            //using (StreamWriter writer = File.CreateText("sample.xml"))
+            //{
+            //    datafile.Save(writer);
+            //}
 
         }
 
         // データを呼び出すメソッド（XMLファイルから）
+        public void loadTasksFromXmlFile()
+        {
+            XmlDocument dataFile = new XmlDocument();
+            //dataFile.Load(this.taskDataPath);
+
+            while (true)
+            {
+                // xml data 読み込み
+                // 内部データに格納
+                DataModel dm = DataModel.GetInstance();
+                // dm.tickets
+            }
+        }
+
         // データを書き込むメソッド（XMLファイルに）
+        public void saveTaskstoXmlFile()
+        {
+            // 内部データを取得
+            DataModel dm = DataModel.GetInstance();
+
+            // xml dataとして保存
+
+        }
     }
 }

@@ -8,7 +8,20 @@ namespace App1
 {
     class DataModel
     {
-        struct ticket
+        // 自分自身のインスタンス
+        private static DataModel dm = new DataModel();
+
+        private DataModel()
+        {
+            // インスタンスが生成されます
+        }
+
+        public static DataModel GetInstance()
+        {
+            return dm;
+        }
+
+        public struct ticket
         {
             // チケット構成要素
             String ticketTitle;
@@ -34,7 +47,7 @@ namespace App1
         }
         // end struct
 
-        private List<ticket> tickets = new List<ticket>();
+        public List<ticket> tickets = new List<ticket>();
 
         // 新規チケット追加
         // チケット編集
