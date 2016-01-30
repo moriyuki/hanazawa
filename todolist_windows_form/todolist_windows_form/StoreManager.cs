@@ -38,14 +38,44 @@ namespace todolist_windows_form
         public void loadTasksFromXmlFile()
         {
             XmlDocument dataFile = new XmlDocument();
-            //dataFile.Load(this.taskDataPath);
-
-            while (true)
+            try
             {
-                // xml data 読み込み
-                // 内部データに格納
-                DataModel dm = DataModel.GetInstance();
-                // dm.tickets
+                // dataFile.Load("test.xml");
+                XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("test.xml")));
+                // System.Windows.Forms.MessageBox.Show("load success!");
+                while (reader.Read())
+                {
+                    // Console.WriteLine(" find node!: {0} ", reader.NodeType.ToString());
+
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+                            Console.WriteLine("Element:{0}", reader.Name);
+                            if (reader.MoveToFirstAttribute())
+                            {
+                                // 属性値を取得するためのWhile
+                                do
+                                {
+                                    Console.WriteLine("Attribute:{0}={1}", reader.Name, reader.Value);
+                                } while (reader.MoveToNextAttribute());
+                            }
+                            break;
+
+                        case XmlNodeType.Text:
+                            Console.WriteLine("Text:{0}", reader.Value);
+                            break;
+
+                        case XmlNodeType.EndElement:
+                            Console.WriteLine("EndElement:{0}", reader.Name);
+                            break;
+                        case XmlNodeType.Whitespace:
+                            break;  
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
 
@@ -56,7 +86,6 @@ namespace todolist_windows_form
             DataModel dm = DataModel.GetInstance();
 
             // xml dataとして保存
-
         }
     }
 }
