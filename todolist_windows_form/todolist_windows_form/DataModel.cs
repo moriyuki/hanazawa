@@ -24,6 +24,26 @@ namespace todolist_windows_form
         public struct ticket
         {
             // チケット構成要素
+            int id;
+
+            public struct project
+            {
+                String name;
+                int id;
+            }
+            public struct tracker
+            { String name; int id; }
+            public struct status
+            { String name; int id; }
+            public struct priorityt
+            { String name; int id; }
+            public struct author
+            { String name; int id; }
+
+            //ここまで
+
+            String startDate;
+            
             String ticketTitle;
             int ticketId;
             bool existTicketFrom;
