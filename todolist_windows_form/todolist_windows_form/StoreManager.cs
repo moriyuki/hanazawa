@@ -37,7 +37,7 @@ namespace todolist_windows_form
         // データを呼び出すメソッド（XMLファイルから）
         public void loadTasksFromXmlFile()
         {
-            XmlDocument dataFile = new XmlDocument();
+            DataModel dm = DataModel.GetInstance();
             try
             {
                 // dataFile.Load("test.xml");
@@ -50,6 +50,13 @@ namespace todolist_windows_form
                     switch (reader.NodeType)
                     {
                         case XmlNodeType.Element:
+                            if (reader.Name.Equals("issue"))
+                            {
+                                DataModel.ticket ticket = new DataModel.ticket();
+                                ticket.initTicket();
+                                // XMLデータの値を割り付け
+                                dm.tickets.Add(ticket);
+                            }
                             Console.WriteLine("Element:{0}", reader.Name);
                             if (reader.MoveToFirstAttribute())
                             {
