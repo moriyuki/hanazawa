@@ -43,7 +43,7 @@ namespace todolist_windows_form
             //ここまで
 
             String startDate;
-            
+
             String ticketTitle;
             int ticketId;
             bool existTicketFrom;
