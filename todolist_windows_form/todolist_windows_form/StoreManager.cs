@@ -47,15 +47,41 @@ namespace todolist_windows_form
                 {
                     // Console.WriteLine(" find node!: {0} ", reader.NodeType.ToString());
 
+                    if ( reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("issue") )
+                    {
+                        DataModel.ticket ticket = new DataModel.ticket();
+                        ticket.initTicket();
+                        // XMLデータの値を割り付け
+                        if ( reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("id"))
+                        {
+                            // id 読み込み
+                            ticket.id = int.Parse(reader.Value);
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("project"))
+                        {
+                            // project 読み込み
+                            do
+                            {
+                                if (reader.Name.Equals("id"))
+                                {
+                                    ticket.project.id = int.Parse(reader.Value);
+                                }
+                                else if (reader.Name.Equals("name"))
+                                {
+                                    ticket.project.name = reader.Value;
+                                }
+                            } while (reader.MoveToNextAttribute());
+
+                        }
+                        dm.tickets.Add(ticket);
+                    }
+
                     switch (reader.NodeType)
                     {
                         case XmlNodeType.Element:
                             if (reader.Name.Equals("issue"))
                             {
-                                DataModel.ticket ticket = new DataModel.ticket();
-                                ticket.initTicket();
-                                // XMLデータの値を割り付け
-                                dm.tickets.Add(ticket);
+
                             }
                             Console.WriteLine("Element:{0}", reader.Name);
                             if (reader.MoveToFirstAttribute())

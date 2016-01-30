@@ -23,8 +23,8 @@ namespace todolist_windows_form
 
         public struct idname
         {
-            int id;
-            String name;
+            public int id;
+            public String name;
 
             public void init()
             {
@@ -35,8 +35,9 @@ namespace todolist_windows_form
 
         public struct ticket
         {
+            
             // チケット構成要素
-            int id;
+            public int id;
 
             //public struct project
             //{
@@ -54,21 +55,21 @@ namespace todolist_windows_form
 
             //ここまで
 
-            idname project;
-            idname tracker;
-            idname status;
-            idname priority;
-            idname auther;
-            String subject;
-            String description;
-            DateTime start_date;
-            DateTime due_date;
-            int done_ratio;
-            bool is_private;
-            float estimated_hours;
-            DateTime created_on;
-            DateTime updated_on;
-            DateTime closed_on;
+            public idname project;
+            public idname tracker;
+            public idname status;
+            public idname priority;
+            public idname auther;
+            public String subject;
+            public String description;
+            public DateTime start_date;
+            public DateTime due_date;
+            public int done_ratio;
+            public bool is_private;
+            public float estimated_hours;
+            public DateTime created_on;
+            public DateTime updated_on;
+            public DateTime closed_on;
 
             bool done;
 
@@ -92,6 +93,7 @@ namespace todolist_windows_form
                 updated_on = DateTime.MinValue;
                 closed_on = DateTime.MinValue;
             }
+            // public 
         }
         // end struct
 
