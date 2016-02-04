@@ -73,6 +73,130 @@ namespace todolist_windows_form
                             } while (reader.MoveToNextAttribute());
 
                         }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("tracker"))
+                        {
+                            // tracker 読み込み
+                            do
+                            {
+                                if (reader.Name.Equals("id"))
+                                {
+                                    ticket.tracker.id = int.Parse(reader.Value);
+                                }
+                                else if (reader.Name.Equals("name"))
+                                {
+                                    ticket.tracker.name = reader.Value;
+                                }
+                            } while (reader.MoveToNextAttribute());
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("status"))
+                        {
+                            // status 読み込み
+                            do
+                            {
+                                if (reader.Name.Equals("id"))
+                                {
+                                    ticket.status.id = int.Parse(reader.Value);
+                                }
+                                else if (reader.Name.Equals("name"))
+                                {
+                                    ticket.status.name = reader.Value;
+                                }
+                            } while (reader.MoveToNextAttribute());
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("priority"))
+                        {
+                            // priority 読み込み
+                            do
+                            {
+                                if (reader.Name.Equals("id"))
+                                {
+                                    ticket.priority.id = int.Parse(reader.Value);
+                                }
+                                else if (reader.Name.Equals("name"))
+                                {
+                                    ticket.priority.name = reader.Value;
+                                }
+                            } while (reader.MoveToNextAttribute());
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("auther"))
+                        {
+                            // auther 読み込み
+                            do
+                            {
+                                if (reader.Name.Equals("id"))
+                                {
+                                    ticket.auther.id = int.Parse(reader.Value);
+                                }
+                                else if (reader.Name.Equals("name"))
+                                {
+                                    ticket.auther.name = reader.Value;
+                                }
+                            } while (reader.MoveToNextAttribute());
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("subject"))
+                        {
+                            // subject 読み込み
+                            ticket.subject = reader.Value;
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("description"))
+                        {
+                            // description 読み込み
+                            ticket.description = reader.Value;
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("start_date"))
+                        {
+                            // start_date 読み込み
+                            ticket.start_date = DateTime.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("due_date"))
+                        {
+                            // due_date 読み込み
+                            ticket.due_date = DateTime.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("done_ratio"))
+                        {
+                            // done_ratio 読み込み
+                            ticket.done_ratio = int.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("is_private"))
+                        {
+                            // is_private 読み込み
+                            ticket.is_private = bool.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("estimated_hours"))
+                        {
+                            // estimated_hours 読み込み
+                            ticket.estimated_hours = float.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("created_on"))
+                        {
+                            // created_on 読み込み
+                            ticket.created_on = DateTime.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("updated_on"))
+                        {
+                            // updated_on 読み込み
+                            ticket.updated_on = DateTime.Parse(reader.Value);
+
+                        }
+                        else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("closed_on"))
+                        {
+                            // closed_on 読み込み
+                            ticket.closed_on = DateTime.Parse(reader.Value);
+
+                        }
                         dm.tickets.Add(ticket);
                     }
 
