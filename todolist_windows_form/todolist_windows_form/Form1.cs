@@ -20,7 +20,8 @@ namespace todolist_windows_form
         private void Form1_Load(object sender, EventArgs e)
         {
             StoreManager sm = new StoreManager();
-            sm.createDataFile();
+            // sm.createDataFile();
+            sm.loadTasksFromXmlFile();
         }
     }
 }
