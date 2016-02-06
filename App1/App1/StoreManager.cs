@@ -30,12 +30,21 @@ namespace App1
             element.SetAttribute("attribute", "256");
 
             root.AppendChild(element);
-
+            
+            datafile.Save();
             //using (StreamWriter writer = File.CreateText("sample.xml"))
             //{
             //    datafile.Save(writer);
             //}
-
+            //using (StreamWriter sw = new StreamWriter(@"config.xml")) { 
+            //    using (XmlWriter xw = XmlWriter.Create(st))
+            //    {
+            //        xw.WriteStartDocument();
+            //        xw.WriteStartElement("element");
+            //        xw.WriteEndElement();
+            //        xw.WriteEndDocument();
+            //    }
+            //}
         }
 
         // データを呼び出すメソッド（XMLファイルから）
