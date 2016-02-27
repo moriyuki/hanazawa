@@ -29,35 +29,42 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.uc_ticketItem1 = new todolist_windows_form.uc_ticketItem();
-            this.panel1.SuspendLayout();
+            this.btnAddTicket = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.uc_ticketItem1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(12, 72);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(774, 647);
+            this.panel1.Size = new System.Drawing.Size(1221, 585);
             this.panel1.TabIndex = 0;
             // 
-            // uc_ticketItem1
+            // btnAddTicket
             // 
-            this.uc_ticketItem1.Location = new System.Drawing.Point(152, 16);
-            this.uc_ticketItem1.Name = "uc_ticketItem1";
-            this.uc_ticketItem1.Size = new System.Drawing.Size(604, 101);
-            this.uc_ticketItem1.TabIndex = 0;
+            this.btnAddTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTicket.Location = new System.Drawing.Point(1110, 12);
+            this.btnAddTicket.Name = "btnAddTicket";
+            this.btnAddTicket.Size = new System.Drawing.Size(120, 54);
+            this.btnAddTicket.TabIndex = 0;
+            this.btnAddTicket.Text = "+";
+            this.btnAddTicket.UseVisualStyleBackColor = true;
+            this.btnAddTicket.Click += new System.EventHandler(this.btnAddTicket_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 671);
+            this.ClientSize = new System.Drawing.Size(1245, 669);
+            this.Controls.Add(this.btnAddTicket);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -65,7 +72,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private uc_ticketItem uc_ticketItem1;
+        private System.Windows.Forms.Button btnAddTicket;
     }
 }
 

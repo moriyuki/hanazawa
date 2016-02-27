@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace todolist_windows_form
 {
-    class DataModel
+    public class DataModel
     {
         // 自分自身のインスタンス
         private static DataModel dm = new DataModel();
@@ -39,22 +39,6 @@ namespace todolist_windows_form
             // チケット構成要素
             public int id;
 
-            //public struct project
-            //{
-            //    String name;
-            //    int id;
-            //}
-            //public struct tracker
-            //{ String name; int id; }
-            //public struct status
-            //{ String name; int id; }
-            //public struct priorityt
-            //{ String name; int id; }
-            //public struct author
-            //{ String name; int id; }
-
-            //ここまで
-
             public idname project;
             public idname tracker;
             public idname status;
@@ -71,7 +55,7 @@ namespace todolist_windows_form
             public DateTime updated_on;
             public DateTime closed_on;
 
-            bool done;
+            public bool done;
 
             // チケット構成要素初期化
             public void initTicket()
@@ -92,6 +76,7 @@ namespace todolist_windows_form
                 created_on = DateTime.MinValue;
                 updated_on = DateTime.MinValue;
                 closed_on = DateTime.MinValue;
+                done = false;
             }
             // public 
         }
