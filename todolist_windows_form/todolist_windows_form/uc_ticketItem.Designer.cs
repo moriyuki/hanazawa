@@ -37,7 +37,7 @@
             // 
             this.txbTicketSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbTicketSubject.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txbTicketSubject.Location = new System.Drawing.Point(94, 24);
+            this.txbTicketSubject.Location = new System.Drawing.Point(94, 7);
             this.txbTicketSubject.Name = "txbTicketSubject";
             this.txbTicketSubject.Size = new System.Drawing.Size(403, 39);
             this.txbTicketSubject.TabIndex = 1;
@@ -47,9 +47,9 @@
             // btnDetail
             // 
             this.btnDetail.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDetail.Location = new System.Drawing.Point(513, 13);
+            this.btnDetail.Location = new System.Drawing.Point(503, 4);
             this.btnDetail.Name = "btnDetail";
-            this.btnDetail.Size = new System.Drawing.Size(75, 72);
+            this.btnDetail.Size = new System.Drawing.Size(88, 50);
             this.btnDetail.TabIndex = 2;
             this.btnDetail.Text = "詳細";
             this.btnDetail.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@
             this.chkDone.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
             this.chkDone.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
             this.chkDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDone.Location = new System.Drawing.Point(12, 13);
+            this.chkDone.Location = new System.Drawing.Point(12, 7);
             this.chkDone.Name = "chkDone";
-            this.chkDone.Size = new System.Drawing.Size(76, 72);
+            this.chkDone.Size = new System.Drawing.Size(76, 44);
             this.chkDone.TabIndex = 3;
             this.chkDone.UseVisualStyleBackColor = true;
             this.chkDone.CheckedChanged += new System.EventHandler(this.chkDone_CheckedChanged);
@@ -79,7 +79,7 @@
             this.Controls.Add(this.btnDetail);
             this.Controls.Add(this.txbTicketSubject);
             this.Name = "uc_ticketItem";
-            this.Size = new System.Drawing.Size(604, 101);
+            this.Size = new System.Drawing.Size(604, 60);
             this.Load += new System.EventHandler(this.uc_ticketItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
