@@ -13,14 +13,16 @@ namespace todolist_windows_form
     public partial class uc_ticketItem : UserControl
     {
         private DataModel.ticket tck;
+        private DataModel.ticket tckorg;
+        private String strSubPreText;
+        
+        public event EventHandler DataChenged;
 
         // event CheckChanged(Byval )
         public uc_ticketItem()
         {
             InitializeComponent();
         }
-
-        private int privatenumber = -1;
 
         public DataModel.ticket myTicket
         {
@@ -31,6 +33,7 @@ namespace todolist_windows_form
             set
             {
                 tck = value;
+                tckorg = value;
             }
         }
 
@@ -49,34 +52,71 @@ namespace todolist_windows_form
 
         }
 
+        // チケットテキストエリアに入ったとき
         private void txbTicketSubject_Enter(object sender, EventArgs e)
         {
-
+            this.strSubPreText = this.txbTicketSubject.Text;
+        }
+        // チケットテキストエリアから出たとき
+        private void txbTicketSubject_Leave(object sender, EventArgs e)
+        {
+            if (String.Equals(strSubPreText, this.txbTicketSubject.Text))
+            {
+                // 同じ場合　何もしない
+            }
+            else
+            {
+                this.tck.subject = this.txbTicketSubject.Text;
+                this.SaveTicket();
+            }
         }
 
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            this.txbTicketSubject.Text = "Detail Clicked";
+            //this.txbTicketSubject.Text = "Detail Clicked";
         }
 
         private void uc_ticketItem_Load(object sender, EventArgs e)
         {
             this.txbTicketSubject.Text = this.tck.subject;
+            this.ShowTicketItem();
         }
 
-        private void pnlCheck_Click(object sender, EventArgs e)
+        // チケットを保存する
+        private void SaveTicket()
         {
-            this.tck.done = !(this.tck.done);
-
-            if (this.tck.done)
+            if (tck.IsEqual(tckorg))
             {
-                this.pnlCheck.BackColor = Color.RosyBrown;
+                // do nothing
             }
             else
             {
-                this.pnlCheck.BackColor = Color.Transparent;
+                // Event 通知
+                DataChenged(this, new EventArgs());
             }
-            // this.txbTicketSubject.Text = "panel Clicked";
+        }
+
+        private void chkDone_CheckedChanged(object sender, EventArgs e)
+        {
+            this.tck.done = !(this.tck.done);
+            this.ShowTicketItem();
+            this.SaveTicket();
+        }
+
+        private void ShowTicketItem()
+        {
+            if (this.tck.done)
+            {
+                this.BackColor = Color.Gray;
+                this.txbTicketSubject.BackColor = Color.Gray;
+                this.btnDetail.Enabled = false;
+            }
+            else
+            {
+                this.BackColor = Color.Transparent;
+                this.txbTicketSubject.BackColor = Color.White;
+                this.btnDetail.Enabled = true;
+            }
         }
     }
 }

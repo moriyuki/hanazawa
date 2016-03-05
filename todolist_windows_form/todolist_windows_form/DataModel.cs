@@ -31,6 +31,20 @@ namespace todolist_windows_form
                 id = 0;
                 name = String.Empty;
             }
+
+            public bool IsEqual(idname i)
+            {
+                if (!id.Equals(i.id))
+                {
+                    return false;
+                }
+
+                if (!name.Equals(i.name))
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
         public struct ticket
@@ -78,6 +92,98 @@ namespace todolist_windows_form
                 closed_on = DateTime.MinValue;
                 done = false;
             }
+
+            public bool IsEqual(ticket t)
+            {
+                if (!id.Equals(t.id))
+                {
+                    return false;
+                }
+
+                if (!project.IsEqual(t.project))
+                {
+                    return false;
+                }
+
+                if (!tracker.IsEqual(t.tracker))
+                {
+                    return false;
+                }
+
+                if (!status.IsEqual(t.status))
+                {
+                    return false;
+                }
+
+                if (!priority.IsEqual(t.priority))
+                {
+                    return false;
+                }
+
+                if (!auther.IsEqual(t.auther))
+                {
+                    return false;
+                }
+
+                if (!subject.Equals(t.subject))
+                {
+                    return false;
+                }
+
+                if (!description.Equals(t.description))
+                {
+                    return false;
+                }
+
+                if (!start_date.Equals(t.start_date))
+                {
+                    return false;
+                }
+
+                if (!due_date.Equals(t.due_date))
+                {
+                    return false;
+                }
+
+                if (done_ratio != t.done_ratio)
+                {
+                    return false;
+                }
+
+                if (is_private != t.is_private)
+                {
+                    return false;
+                }
+
+                if (estimated_hours != t.estimated_hours)
+                {
+                    return false;
+                }
+
+                if (!created_on.Equals(t.created_on))
+                {
+                    return false;
+                }
+
+                if (!updated_on.Equals(t.updated_on))
+                {
+                    return false;
+                }
+
+                if (!closed_on.Equals(t.closed_on))
+                {
+                    return false;
+                }
+
+                if (done != t.done)
+                {
+                    return false;
+                }
+
+                // すべて同じ場合はTrue
+                return true;
+            }
+
             // public 
         }
         // end struct
