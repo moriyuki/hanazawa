@@ -28,54 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlCheck = new System.Windows.Forms.Panel();
             this.txbTicketSubject = new System.Windows.Forms.TextBox();
             this.btnDetail = new System.Windows.Forms.Button();
+            this.chkDone = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // pnlCheck
-            // 
-            this.pnlCheck.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pnlCheck.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCheck.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlCheck.Location = new System.Drawing.Point(17, 13);
-            this.pnlCheck.Name = "pnlCheck";
-            this.pnlCheck.Size = new System.Drawing.Size(71, 72);
-            this.pnlCheck.TabIndex = 0;
-            this.pnlCheck.Click += new System.EventHandler(this.pnlCheck_Click);
-            this.pnlCheck.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCheck_Paint);
-            this.pnlCheck.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlCheck_MouseDown);
             // 
             // txbTicketSubject
             // 
             this.txbTicketSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbTicketSubject.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txbTicketSubject.Location = new System.Drawing.Point(94, 24);
+            this.txbTicketSubject.Location = new System.Drawing.Point(94, 7);
             this.txbTicketSubject.Name = "txbTicketSubject";
             this.txbTicketSubject.Size = new System.Drawing.Size(403, 39);
             this.txbTicketSubject.TabIndex = 1;
             this.txbTicketSubject.Enter += new System.EventHandler(this.txbTicketSubject_Enter);
+            this.txbTicketSubject.Leave += new System.EventHandler(this.txbTicketSubject_Leave);
             // 
             // btnDetail
             // 
             this.btnDetail.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDetail.Location = new System.Drawing.Point(513, 13);
+            this.btnDetail.Location = new System.Drawing.Point(503, 4);
             this.btnDetail.Name = "btnDetail";
-            this.btnDetail.Size = new System.Drawing.Size(75, 72);
+            this.btnDetail.Size = new System.Drawing.Size(88, 50);
             this.btnDetail.TabIndex = 2;
             this.btnDetail.Text = "詳細";
             this.btnDetail.UseVisualStyleBackColor = true;
             this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
             // 
+            // chkDone
+            // 
+            this.chkDone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkDone.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkDone.FlatAppearance.BorderSize = 2;
+            this.chkDone.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
+            this.chkDone.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.chkDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkDone.Location = new System.Drawing.Point(12, 7);
+            this.chkDone.Name = "chkDone";
+            this.chkDone.Size = new System.Drawing.Size(76, 44);
+            this.chkDone.TabIndex = 3;
+            this.chkDone.UseVisualStyleBackColor = true;
+            this.chkDone.CheckedChanged += new System.EventHandler(this.chkDone_CheckedChanged);
+            // 
             // uc_ticketItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkDone);
             this.Controls.Add(this.btnDetail);
             this.Controls.Add(this.txbTicketSubject);
-            this.Controls.Add(this.pnlCheck);
             this.Name = "uc_ticketItem";
-            this.Size = new System.Drawing.Size(604, 101);
+            this.Size = new System.Drawing.Size(604, 60);
             this.Load += new System.EventHandler(this.uc_ticketItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,9 +87,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlCheck;
         private System.Windows.Forms.TextBox txbTicketSubject;
         private System.Windows.Forms.Button btnDetail;
+        private System.Windows.Forms.CheckBox chkDone;
     }
 }

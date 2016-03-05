@@ -34,7 +34,8 @@ namespace todolist_windows_form
         {
             DataModel dm = DataModel.GetInstance();
             // continue while item list number
-            for(int i = 0; i < dm.tickets.Count; i++)
+            this.SuspendLayout();
+            for (int i = 0; i < dm.tickets.Count; i++)
             {
                 uc_ticketItem uc_item;
                 uc_item = new todolist_windows_form.uc_ticketItem();
@@ -42,11 +43,13 @@ namespace todolist_windows_form
                 uc_item.Size = new System.Drawing.Size(604, 101);
                 uc_item.Location = new System.Drawing.Point(LAYOUT_MERGINE, LAYOUT_MERGINE + i * uc_item.Size.Height + LAYOUT_MERGINE * i);
                 uc_item.TabIndex = 0;
+                uc_item.DataChenged += new System.EventHandler(this.SaveData);
 
                 uc_item.myTicket = dm.tickets[i];
 
                 this.panel1.Controls.Add(uc_item);
             }
+            this.ResumeLayout();
         }
 
         private void btnAddTicket_Click(object sender, EventArgs e)
@@ -66,6 +69,22 @@ namespace todolist_windows_form
                 ctrl.Dispose();
             }
             this.panel1.Controls.Clear();
+        }
+
+        private void SaveData(object sender, EventArgs e)
+        {
+            uc_ticketItem item = (uc_ticketItem)sender;
+            DataModel dm = DataModel.GetInstance();
+            for (int i = 0; i < dm.tickets.Count; i++)
+            {
+                if(dm.tickets[i].id.Equals(item.myTicket.id))
+                {
+                    dm.tickets[i] = item.myTicket;
+                }
+            }
+                // データ保存
+                MessageBox.Show("SaveData:" + item.myTicket.subject);
+
         }
     }
 }
