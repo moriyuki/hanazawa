@@ -112,14 +112,14 @@ namespace todolist_windows_form
                                 {
                                     ticket.priority.id = int.Parse(reader.Value);
                                 }
-                                else if (reader.MoveToAttribute("name"))
+                                 if (reader.MoveToAttribute("name"))
                                 {
                                     ticket.priority.name = reader.Value;
                                 }
 
 
                             }
-                            else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("auther"))
+                            else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("author"))
                             {
                                 // auther 読み込み
 
@@ -263,7 +263,7 @@ namespace todolist_windows_form
                 XmlElement status = datafile.CreateElement("status");
                 status.SetAttribute("name", dm.tickets[i].status.name);
                 status.SetAttribute("id", dm.tickets[i].status.id.ToString());
-                issue.AppendChild(tracker);
+                issue.AppendChild(status);
 
                 XmlElement priority = datafile.CreateElement("priority");
                 priority.SetAttribute("name", dm.tickets[i].priority.name);
@@ -283,11 +283,17 @@ namespace todolist_windows_form
                 issue.AppendChild(description);
 
                 XmlElement start_date = datafile.CreateElement("start_date");
-                start_date.InnerText = dm.tickets[i].start_date.ToString();
+                if (dm.tickets[i].start_date != DateTime.MinValue)
+                {
+                    start_date.InnerText = dm.tickets[i].start_date.ToShortDateString();
+                }
                 issue.AppendChild(start_date);
 
                 XmlElement due_date = datafile.CreateElement("due_date");
-                due_date.InnerText = dm.tickets[i].due_date.ToString();
+                if (dm.tickets[i].due_date != DateTime.MinValue)
+                {
+                    due_date.InnerText = dm.tickets[i].due_date.ToShortDateString();
+                }
                 issue.AppendChild(due_date);
 
                 XmlElement done_ratio = datafile.CreateElement("done_ratio");
@@ -303,15 +309,24 @@ namespace todolist_windows_form
                 issue.AppendChild(estimated_hours);
 
                 XmlElement created_on = datafile.CreateElement("created_on");
-                created_on.InnerText = dm.tickets[i].created_on.ToString();
+                if (dm.tickets[i].created_on != DateTime.MinValue)
+                {
+                    created_on.InnerText = dm.tickets[i].created_on.ToUniversalTime().ToString("o");
+                }
                 issue.AppendChild(created_on);
 
                 XmlElement updated_on = datafile.CreateElement("updated_on");
-                updated_on.InnerText = dm.tickets[i].updated_on.ToString();
+                if (dm.tickets[i].updated_on != DateTime.MinValue)
+                {
+                    updated_on.InnerText = dm.tickets[i].updated_on.ToUniversalTime().ToString("o");
+                }
                 issue.AppendChild(updated_on);
 
                 XmlElement closed_on = datafile.CreateElement("closed_on");
-                closed_on.InnerText = dm.tickets[i].closed_on.ToString();
+                if (dm.tickets[i].closed_on != DateTime.MinValue)
+                {
+                    closed_on.InnerText = dm.tickets[i].closed_on.ToUniversalTime().ToString("o");
+                }
                 issue.AppendChild(closed_on);
 
 
