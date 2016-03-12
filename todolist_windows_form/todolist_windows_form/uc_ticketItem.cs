@@ -71,9 +71,11 @@ namespace todolist_windows_form
             }
         }
 
+        // 詳細ボタンクリックイベント
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            //this.txbTicketSubject.Text = "Detail Clicked";
+            FormTicketDetail ftd = new FormTicketDetail();
+            ftd.ShowDialog();
         }
 
         private void uc_ticketItem_Load(object sender, EventArgs e)

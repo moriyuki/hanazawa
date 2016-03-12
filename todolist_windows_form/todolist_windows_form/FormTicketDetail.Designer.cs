@@ -90,7 +90,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(472, 520);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
@@ -100,7 +99,6 @@
             this.label1.Size = new System.Drawing.Size(79, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "チケットID：0000";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -110,7 +108,6 @@
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 2;
             this.label2.Text = "開始日";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label4
             // 
@@ -120,7 +117,6 @@
             this.label4.Size = new System.Drawing.Size(149, 12);
             this.label4.TabIndex = 4;
             this.label4.Text = "作成日：yyyy/mm/dd hh:mm";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -130,7 +126,6 @@
             this.label5.Size = new System.Drawing.Size(151, 12);
             this.label5.TabIndex = 5;
             this.label5.Text = "完了日：yyyy/mm/dd-hh:mm";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -140,7 +135,6 @@
             this.label6.Size = new System.Drawing.Size(68, 12);
             this.label6.TabIndex = 6;
             this.label6.Text = "プロジェクト名";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label8
             // 
@@ -204,7 +198,6 @@
             this.label14.Size = new System.Drawing.Size(29, 12);
             this.label14.TabIndex = 16;
             this.label14.Text = "期限";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label15
             // 
@@ -223,7 +216,6 @@
             this.label16.Size = new System.Drawing.Size(197, 12);
             this.label16.TabIndex = 18;
             this.label16.Text = "所要時間作成日：yyyy/mm/dd hh:mm";
-            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // textBox6
             // 
@@ -261,7 +253,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(85, 20);
             this.comboBox2.TabIndex = 29;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
             // 
@@ -320,7 +311,6 @@
             this.label3.Size = new System.Drawing.Size(175, 12);
             this.label3.TabIndex = 5;
             this.label3.Text = "最終更新日：yyyy/mm/dd-hh:mm";
-            this.label3.Click += new System.EventHandler(this.label5_Click);
             // 
             // FormTicketDetail
             // 

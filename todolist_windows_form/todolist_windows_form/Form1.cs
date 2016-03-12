@@ -25,6 +25,7 @@ namespace todolist_windows_form
             // sm.createDataFile();
             // 設定値読み込み
             sm.loadTasksFromXmlFile();
+            
             // 設定値画面反映
             SetListItemControl();
         }
@@ -82,8 +83,12 @@ namespace todolist_windows_form
                     dm.tickets[i] = item.myTicket;
                 }
             }
-                // データ保存
-                MessageBox.Show("SaveData:" + item.myTicket.subject);
+
+            // データ保存
+            MessageBox.Show("SaveData:" + item.myTicket.subject);
+
+            StoreManager sm = new StoreManager();
+            sm.saveTaskstoXmlFile();
 
         }
     }
