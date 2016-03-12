@@ -11,7 +11,7 @@ namespace todolist_windows_form
     // ローカルデータ管理クラス
     class StoreManager
     {
-        private const String taskDataPath = "./../config/taskdata.xml";
+        private const String taskDataPath = "ToDoItem.xml";
 
         // ローカルデータファイルが無いときに新規作成する
         public void createDataFile()
@@ -41,7 +41,9 @@ namespace todolist_windows_form
             try
             {
                 // dataFile.Load("test.xml");
-                XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("./../../../../Document/redmine_sample.xml")));
+                //               XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("./../../../../Document/redmine_sample.xml")));
+                XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText(taskDataPath, Encoding.GetEncoding("Shift-JIS"))));
+
                 // System.Windows.Forms.MessageBox.Show("load success!");
                 while (reader.Read())
                 {
@@ -161,7 +163,14 @@ namespace todolist_windows_form
                             else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("done_ratio"))
                             {
                                 // done_ratio 読み込み
-                                ticket.done_ratio = int.Parse(reader.ReadString());
+                                String dummy = reader.ReadString();
+                                if (String.IsNullOrEmpty(dummy))
+                                {
+                                    ticket.done_ratio = 0;
+                                }
+                                else {
+                                    ticket.done_ratio = int.Parse(dummy);
+                                }
 
                             }
                             else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("is_private"))
@@ -236,6 +245,7 @@ namespace todolist_windows_form
             XmlDocument datafile = new XmlDocument();
 
             XmlDeclaration declaration = datafile.CreateXmlDeclaration("1.0", "Shift-JIS", null);
+            declaration.Encoding = "Shift-JIS";
             XmlElement issues = datafile.CreateElement("issues");
 
             datafile.AppendChild(declaration);
@@ -335,7 +345,7 @@ namespace todolist_windows_form
 
 
 
-            datafile.Save("test.xml");
+            datafile.Save(taskDataPath);
         }
     }
 }
