@@ -38,8 +38,8 @@ namespace todolist_windows_form
                 {
                     return false;
                 }
-
-                if (!name.Equals(i.name))
+                
+                if (String.IsNullOrEmpty(i.name) || !name.Equals(i.name))
                 {
                     return false;
                 }

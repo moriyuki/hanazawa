@@ -74,7 +74,7 @@ namespace todolist_windows_form
         // 詳細ボタンクリックイベント
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            FormTicketDetail ftd = new FormTicketDetail();
+            FormTicketDetail ftd = new FormTicketDetail(tck);
             ftd.ShowDialog();
         }
 

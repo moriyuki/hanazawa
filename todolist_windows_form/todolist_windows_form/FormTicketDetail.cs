@@ -12,9 +12,24 @@ namespace todolist_windows_form
 {
     public partial class FormTicketDetail : Form
     {
+        private DataModel.ticket tck;
+
         public FormTicketDetail()
         {
             InitializeComponent();
+        }
+
+        public FormTicketDetail(DataModel.ticket t)
+        {
+            InitializeComponent();
+            this.tck = t;
+            this.ShowTicketDate();
+        }
+
+        // チケットの内容を表示する
+        private void ShowTicketDate()
+        {
+            this.tbSubject.Text = tck.subject;
         }
 
         private void lblCreated_Click(object sender, EventArgs e)
