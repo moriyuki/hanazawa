@@ -17,6 +17,21 @@ namespace todolist_windows_form
             InitializeComponent();
         }
 
-    
+        private void lblCreated_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hsbDoneRatio_Scroll(object sender, ScrollEventArgs e)
+        {
+            double temp = hsbDoneRatio.Value / 10.0;
+            temp = Math.Ceiling(temp);
+            tbDoneRatio.Text = (temp * 10.0).ToString();
+        }
+
+        private void tbDoneRatio_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
