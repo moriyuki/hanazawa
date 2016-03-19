@@ -50,7 +50,25 @@ namespace todolist_windows_form
 
                 this.panel1.Controls.Add(uc_item);
             }
+
+            //
+            AddBlankTicket(dm.tickets.Count);
+
+
             this.ResumeLayout();
+        }
+
+        private void AddBlankTicket(int i)
+        {
+            uc_ticketItem uc_item;
+            uc_item = new todolist_windows_form.uc_ticketItem();
+            uc_item.Name = "uc_ticketItem" + (i + 1).ToString();
+            uc_item.Size = new System.Drawing.Size(604, 101);
+            uc_item.Location = new System.Drawing.Point(LAYOUT_MERGINE, LAYOUT_MERGINE + i * uc_item.Size.Height + LAYOUT_MERGINE * i);
+            uc_item.TabIndex = 0;
+            uc_item.DataChenged += new System.EventHandler(this.SaveData);
+
+            this.panel1.Controls.Add(uc_item);
         }
 
         private void btnAddTicket_Click(object sender, EventArgs e)
@@ -76,12 +94,29 @@ namespace todolist_windows_form
         {
             uc_ticketItem item = (uc_ticketItem)sender;
             DataModel dm = DataModel.GetInstance();
-            for (int i = 0; i < dm.tickets.Count; i++)
+            if (item.myTicket.id == 0)
             {
-                if(dm.tickets[i].id.Equals(item.myTicket.id))
+                DataModel.ticket ticket = new DataModel.ticket();
+                ticket = item.myTicket;
+                ticket.id = dm.GetNextID();
+                ticket.created_on = DateTime.Now;
+                ticket.updated_on = DateTime.Now;
+                dm.tickets.Add(ticket);
+
+                ClearListItemControl();
+                SetListItemControl();
+            }
+            else {
+
+                for (int i = 0; i < dm.tickets.Count; i++)
                 {
-                    dm.tickets[i] = item.myTicket;
+                    if (dm.tickets[i].id.Equals(item.myTicket.id))
+                    {
+                        //                       MessageBox.Show("Regal Ticket");
+                        dm.tickets[i] = item.myTicket;
+                    }
                 }
+
             }
 
             // データ保存

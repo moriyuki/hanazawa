@@ -94,6 +94,7 @@ namespace todolist_windows_form
             else
             {
                 // Event 通知
+                tck.updated_on = DateTime.Now;
                 DataChenged(this, new EventArgs());
             }
         }

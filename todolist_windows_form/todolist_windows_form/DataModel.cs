@@ -10,15 +10,22 @@ namespace todolist_windows_form
     {
         // 自分自身のインスタンス
         private static DataModel dm = new DataModel();
+        public int IDManager;
 
         private DataModel()
         {
             // インスタンスが生成されます
+            IDManager = 0;
         }
 
         public static DataModel GetInstance()
         {
             return dm;
+        }
+
+        public int GetNextID()
+        {
+            return ++IDManager;
         }
 
         public struct idname
@@ -39,7 +46,7 @@ namespace todolist_windows_form
                     return false;
                 }
 
-                if (!name.Equals(i.name))
+                if (String.IsNullOrEmpty(name) || !name.Equals(i.name))
                 {
                     return false;
                 }

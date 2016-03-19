@@ -12,6 +12,13 @@ namespace todolist_windows_form
     class StoreManager
     {
         private const String taskDataPath = "ToDoItem.xml";
+        private int IDManager;
+
+        public StoreManager()
+        {
+            IDManager = 0;
+        }
+
 
         // ローカルデータファイルが無いときに新規作成する
         public void createDataFile()
@@ -62,6 +69,10 @@ namespace todolist_windows_form
                             {
                                 // id 読み込み
                                 ticket.id = int.Parse(reader.ReadString());
+                                if(ticket.id > IDManager)
+                                {
+                                    IDManager = ticket.id;
+                                }
                             }
                             else if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("project"))
                             {
@@ -220,6 +231,8 @@ namespace todolist_windows_form
                         dm.tickets.Add(ticket);
                     }
                 }
+
+                dm.IDManager = this.IDManager;
             }
             catch (Exception ex)
             {
