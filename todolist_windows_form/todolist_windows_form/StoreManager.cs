@@ -48,7 +48,11 @@ namespace todolist_windows_form
             try
             {
                 // dataFile.Load("test.xml");
-                //               XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("./../../../../Document/redmine_sample.xml")));
+                // XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("./../../../../Document/redmine_sample.xml")));
+                if (!System.IO.File.Exists(taskDataPath))
+                {
+                    return;
+                }
                 XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText(taskDataPath, Encoding.GetEncoding("Shift-JIS"))));
 
                 // System.Windows.Forms.MessageBox.Show("load success!");
