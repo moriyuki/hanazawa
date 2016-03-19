@@ -64,6 +64,10 @@ namespace todolist_windows_form
             {
                 // 同じ場合　何もしない
             }
+            else if(String.IsNullOrEmpty(this.txbTicketSubject.Text))
+            {
+                this.chkDone.Checked = true;
+            }
             else
             {
                 this.tck.subject = this.txbTicketSubject.Text;
@@ -74,8 +78,13 @@ namespace todolist_windows_form
         // 詳細ボタンクリックイベント
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            FormTicketDetail ftd = new FormTicketDetail(tck);
-            ftd.ShowDialog();
+            FormTicketDetail ftd = new FormTicketDetail(ref tck);
+            if(ftd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.txbTicketSubject.Text = tck.subject;
+                MessageBox.Show(tck.subject);
+                this.SaveTicket();
+            }
         }
 
         private void uc_ticketItem_Load(object sender, EventArgs e)
@@ -102,6 +111,15 @@ namespace todolist_windows_form
         private void chkDone_CheckedChanged(object sender, EventArgs e)
         {
             this.tck.done = !(this.tck.done);
+            //-----
+            if (this.tck.done)
+            {
+                this.tck.closed_on = DateTime.Now;
+            } else
+            {
+                this.tck.closed_on = DateTime.MinValue;
+            }
+            //-----
             this.ShowTicketItem();
             this.SaveTicket();
         }
