@@ -121,5 +121,14 @@ namespace todolist_windows_form
                 this.btnDetail.Enabled = true;
             }
         }
+
+        private void txbTicketSubject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode.Equals(Keys.Enter))
+            {
+                this.tck.subject = this.txbTicketSubject.Text;
+                this.SaveTicket();
+            }
+        }
     }
 }
