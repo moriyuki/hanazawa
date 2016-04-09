@@ -13,10 +13,26 @@ namespace todolist_windows_form
     public partial class FormTicketDetail : Form
     {
         private DataModel.ticket tck;
+        
+        // チケット詳細のプロパティ
+        public DataModel.ticket ticketDetail
+        {
+            get
+            {
+                return this.tck;
+            }
+
+            set
+            {
+                this.tck = value;
+                this.ShowTicketDate();
+            }
+        }
 
         public FormTicketDetail()
         {
             InitializeComponent();
+         
         }
 
         public FormTicketDetail(ref DataModel.ticket t)
@@ -29,12 +45,20 @@ namespace todolist_windows_form
         // チケットの内容を表示する
         private void ShowTicketDate()
         {
-            this.tbSubject.Text =tck.subject;
+            this.tbSubject.Text =tck.subject ;
             this.lbId.Text = "チケットID：" + tck.id.ToString();
             this.lblClosed.Text = "完了日：" + tck.closed_on.ToString();
             this.lblCreated.Text = "作成日：" + tck.created_on.ToString();
             this.lblUpdated.Text = "更新日：" + tck.updated_on.ToString();
+            this.cmbProject.Text = tck.project.name.ToString();
+            this.cmbAuthor.Text = tck.auther.name.ToString();
+            this.cmbbStatus.Text = tck.status.name.ToString();
+            this.cmbPriority.Text = tck.priority.name.ToString();
+            this.cmbTracker.Text = tck.priority.name.ToString();
         }
+
+
+        
 
         private void lblCreated_Click(object sender, EventArgs e)
         {
