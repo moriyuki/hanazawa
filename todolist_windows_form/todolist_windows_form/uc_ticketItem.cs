@@ -78,9 +78,11 @@ namespace todolist_windows_form
         // 詳細ボタンクリックイベント
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            FormTicketDetail ftd = new FormTicketDetail(ref tck);
+            FormTicketDetail ftd = new FormTicketDetail();
+            ftd.ticketDetail = this.tck;
             if(ftd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                this.tck = ftd.ticketDetail;
                 this.txbTicketSubject.Text = tck.subject;
                 MessageBox.Show(tck.subject);
                 this.SaveTicket();
