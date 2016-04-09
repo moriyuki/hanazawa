@@ -14,7 +14,7 @@ namespace todolist_windows_form
     {
         private DataModel.ticket tck;
         
-        // チケット詳細のプロパティ
+        // チケット 詳細のプロパティ
         public DataModel.ticket ticketDetail
         {
             get
