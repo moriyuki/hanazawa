@@ -79,16 +79,6 @@ namespace todolist_windows_form
             this.panel1.Controls.Add(uc_item);
         }
 
-        private void btnAddTicket_Click(object sender, EventArgs e)
-        {
-            DataModel dm = DataModel.GetInstance();
-            DataModel.ticket ticket = new DataModel.ticket();
-            dm.tickets.Add(ticket);
-
-            ClearListItemControl();
-            SetListItemControl();
-        }
-
         private void ClearListItemControl()
         {
             foreach( Control ctrl in this.panel1.Controls)
