@@ -120,17 +120,27 @@ namespace todolist_windows_form
             }
 
             // データ保存
-            MessageBox.Show("SaveData:" + item.myTicket.subject);
-
+            // MessageBox.Show("SaveData:" + item.myTicket.subject);
             StoreManager sm = new StoreManager();
             sm.saveTaskstoXmlFile();
 
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // formが閉じられない不具合修正
+            if (e.Cancel)
+            {
+                e.Cancel = !e.Cancel;
+            }
+        }    }
         private void msSetting_Click(object sender, EventArgs e)
         {
             FormSetting fs = new FormSetting();
             fs.ShowDialog();
         }
+
+
+
     }
 }

@@ -78,8 +78,13 @@ namespace todolist_windows_form
         // 詳細ボタンクリックイベント
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            FormTicketDetail ftd = new FormTicketDetail(tck);
-            ftd.ShowDialog();
+            FormTicketDetail ftd = new FormTicketDetail(ref tck);
+            if(ftd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.txbTicketSubject.Text = tck.subject;
+                MessageBox.Show(tck.subject);
+                this.SaveTicket();
+            }
         }
 
         private void uc_ticketItem_Load(object sender, EventArgs e)
@@ -132,6 +137,15 @@ namespace todolist_windows_form
                 this.BackColor = Color.Transparent;
                 this.txbTicketSubject.BackColor = Color.White;
                 this.btnDetail.Enabled = true;
+            }
+        }
+
+        private void txbTicketSubject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode.Equals(Keys.Enter))
+            {
+                this.tck.subject = this.txbTicketSubject.Text;
+                this.SaveTicket();
             }
         }
     }

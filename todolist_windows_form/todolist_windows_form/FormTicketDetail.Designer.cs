@@ -58,7 +58,7 @@
             this.lblClosed = new System.Windows.Forms.Label();
             this.lblCreated = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbId = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -95,7 +95,7 @@
             this.panel1.Controls.Add(this.lblClosed);
             this.panel1.Controls.Add(this.lblCreated);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lbId);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -352,15 +352,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "開始日";
             // 
-            // label1
+            // lbId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 14);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "チケットID：0000";
+            this.lbId.AutoSize = true;
+            this.lbId.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbId.Location = new System.Drawing.Point(13, 14);
+            this.lbId.Name = "lbId";
+            this.lbId.Size = new System.Drawing.Size(94, 14);
+            this.lbId.TabIndex = 1;
+            this.lbId.Text = "チケットID：0000";
             // 
             // btnCancel
             // 
@@ -371,6 +371,7 @@
             this.btnCancel.TabIndex = 39;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
@@ -381,6 +382,7 @@
             this.btnOk.TabIndex = 38;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // FormTicketDetail
             // 
@@ -399,7 +401,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCreated;
         private System.Windows.Forms.Label lblClosed;

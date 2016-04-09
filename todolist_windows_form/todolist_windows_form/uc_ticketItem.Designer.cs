@@ -42,6 +42,7 @@
             this.txbTicketSubject.Size = new System.Drawing.Size(403, 39);
             this.txbTicketSubject.TabIndex = 1;
             this.txbTicketSubject.Enter += new System.EventHandler(this.txbTicketSubject_Enter);
+            this.txbTicketSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbTicketSubject_KeyDown);
             this.txbTicketSubject.Leave += new System.EventHandler(this.txbTicketSubject_Leave);
             // 
             // btnDetail
