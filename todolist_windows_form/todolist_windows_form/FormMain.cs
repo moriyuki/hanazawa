@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace todolist_windows_form
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         const int LAYOUT_MERGINE = 6;
 
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
