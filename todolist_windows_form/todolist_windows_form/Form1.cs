@@ -139,14 +139,12 @@ namespace todolist_windows_form
             {
                 e.Cancel = !e.Cancel;
             }
-        }    }
+        }
+
         private void msSetting_Click(object sender, EventArgs e)
         {
             FormSetting fs = new FormSetting();
             fs.ShowDialog();
         }
-
-
-
     }
 }
