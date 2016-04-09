@@ -126,5 +126,11 @@ namespace todolist_windows_form
             sm.saveTaskstoXmlFile();
 
         }
+
+        private void msSetting_Click(object sender, EventArgs e)
+        {
+            FormSetting fs = new FormSetting();
+            fs.ShowDialog();
+        }
     }
 }
