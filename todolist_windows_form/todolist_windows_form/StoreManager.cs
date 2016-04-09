@@ -220,6 +220,12 @@ namespace todolist_windows_form
                             {
                                 // closed_on 読み込み
                                 ticket.closed_on = ReadDateTimeFromReeader(reader);
+
+                                // closed_on に値があればdoneフラグを有効にする
+                                if (ticket.closed_on != DateTime.MinValue)
+                                {
+                                    ticket.done = true;
+                                }
                             }
                             else if (reader.NodeType.Equals(XmlNodeType.EndElement) && reader.Name.Equals("issue"))
                             {

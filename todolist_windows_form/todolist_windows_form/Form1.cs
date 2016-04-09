@@ -36,13 +36,21 @@ namespace todolist_windows_form
             DataModel dm = DataModel.GetInstance();
             // continue while item list number
             this.SuspendLayout();
+            DateTime dt = DateTime.Now;
+            int validTicketIndex = 0; // 表示対象チケット数
             for (int i = 0; i < dm.tickets.Count; i++)
             {
+                // 更新されたチケットが指定時間よりも経過していたらコントロールを追加しない
+                if (dm.tickets[i].done && dm.tickets[i].closed_on < dt.AddHours(-1))
+                {
+                    continue;
+                }
+
                 uc_ticketItem uc_item;
                 uc_item = new todolist_windows_form.uc_ticketItem();
                 uc_item.Name = "uc_ticketItem" + (i+1).ToString();
                 uc_item.Size = new System.Drawing.Size(604, 101);
-                uc_item.Location = new System.Drawing.Point(LAYOUT_MERGINE, LAYOUT_MERGINE + i * uc_item.Size.Height + LAYOUT_MERGINE * i);
+                uc_item.Location = new System.Drawing.Point(LAYOUT_MERGINE, LAYOUT_MERGINE + validTicketIndex++ * uc_item.Size.Height + LAYOUT_MERGINE * i);
                 uc_item.TabIndex = 0;
                 uc_item.DataChenged += new System.EventHandler(this.SaveData);
 
@@ -52,7 +60,7 @@ namespace todolist_windows_form
             }
 
             //
-            AddBlankTicket(dm.tickets.Count);
+            AddBlankTicket(validTicketIndex++);
 
 
             this.ResumeLayout();
@@ -112,7 +120,6 @@ namespace todolist_windows_form
                 {
                     if (dm.tickets[i].id.Equals(item.myTicket.id))
                     {
-                        //                       MessageBox.Show("Regal Ticket");
                         dm.tickets[i] = item.myTicket;
                     }
                 }
@@ -120,7 +127,6 @@ namespace todolist_windows_form
             }
 
             // データ保存
-            // MessageBox.Show("SaveData:" + item.myTicket.subject);
             StoreManager sm = new StoreManager();
             sm.saveTaskstoXmlFile();
 
@@ -133,14 +139,12 @@ namespace todolist_windows_form
             {
                 e.Cancel = !e.Cancel;
             }
-        }    }
+        }
+
         private void msSetting_Click(object sender, EventArgs e)
         {
             FormSetting fs = new FormSetting();
             fs.ShowDialog();
         }
-
-
-
     }
 }
