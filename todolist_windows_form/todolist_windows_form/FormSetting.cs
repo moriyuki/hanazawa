@@ -49,14 +49,20 @@ namespace todolist_windows_form
         {
             Settings settings = new Settings();
             String filename = "setting.config";
-            try {
-                BinaryFormatter bf = new BinaryFormatter(); 
-                System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
-                settings = (Settings)bf.Deserialize(fs);
-                fs.Close();
-            } catch (Exception ex)
+            if(System.IO.File.Exists(filename))
             {
-                MessageBox.Show(ex.Message, "Error");
+                try
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
+                    settings = (Settings)bf.Deserialize(fs);
+                    fs.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+
             }
             this.txtServerURL.Text = settings.ServerURL;
             this.txtUser.Text = settings.User;
