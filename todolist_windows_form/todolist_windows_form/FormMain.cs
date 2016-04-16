@@ -28,6 +28,9 @@ namespace todolist_windows_form
             
             // 設定値画面反映
             SetListItemControl();
+
+            //Timer
+            this.timer1.Start();
         }
 
         // ToDolistItemControlを設置する
@@ -41,7 +44,7 @@ namespace todolist_windows_form
             for (int i = 0; i < dm.tickets.Count; i++)
             {
                 // 更新されたチケットが指定時間よりも経過していたらコントロールを追加しない
-                if (dm.tickets[i].done && dm.tickets[i].closed_on < dt.AddHours(-1))
+                if (dm.tickets[i].done && dm.tickets[i].closed_on < dt.AddHours(-0.01))
                 {
                     continue;
                 }
@@ -141,6 +144,7 @@ namespace todolist_windows_form
             {
                 e.Cancel = !e.Cancel;
             }
+            this.timer1.Stop();
         }    
 
         private void msSetting_Click(object sender, EventArgs e)
@@ -149,7 +153,26 @@ namespace todolist_windows_form
             fs.ShowDialog();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.timer1.Stop();
+            //          this.Text = DateTime.Now.ToString();
 
-
+            bool timeflag = false;
+            foreach (uc_ticketItem ucitem in this.panel1.Controls)
+            {
+                if(ucitem.myTicket.closed_on != DateTime.MinValue && ucitem.myTicket.closed_on < DateTime.Now.AddHours(-0.01) )
+                {
+                    timeflag = true;
+                    break;
+                }
+            }
+            if(timeflag)
+            {
+                this.ClearListItemControl();
+                this.SetListItemControl();
+            }
+            this.timer1.Start();
+        }
     }
 }
