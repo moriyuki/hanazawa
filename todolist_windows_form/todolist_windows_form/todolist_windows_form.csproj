@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel.cs" />
+    <Compile Include="Encrypt.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

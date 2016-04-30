@@ -14,6 +14,8 @@ namespace todolist_windows_form
 {
     public partial class FormSetting : Form
     {
+        const string ENCRYPTPASSWORD = "うどん自販機";
+
         public FormSetting()
         {
             InitializeComponent();
@@ -24,7 +26,8 @@ namespace todolist_windows_form
             Settings settings = new Settings();
             settings.User = this.txtUser.Text;
             settings.ServerURL = this.txtServerURL.Text;
-            settings.Password = this.txtPassword.Text;
+            settings.Password = Encrypt.EncryptString(this.txtPassword.Text,ENCRYPTPASSWORD);
+
 
             String filename = "setting.config";
             BinaryFormatter bf = new BinaryFormatter();
@@ -66,7 +69,15 @@ namespace todolist_windows_form
             }
             this.txtServerURL.Text = settings.ServerURL;
             this.txtUser.Text = settings.User;
-            this.txtPassword.Text = settings.Password;
+            if(System.IO.File.Exists(filename))
+            {
+                this.txtPassword.Text = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+            }
+            else
+            {
+                this.txtPassword.Text = settings.Password;
+            }
+            
         }
     }
 }
