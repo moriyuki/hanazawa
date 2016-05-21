@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RedmineAccessor.cs" />
     <Compile Include="DataModel.cs" />
     <Compile Include="Encrypt.cs" />
     <Compile Include="FormMain.cs">

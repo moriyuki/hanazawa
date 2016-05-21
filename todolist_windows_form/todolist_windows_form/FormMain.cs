@@ -21,6 +21,8 @@ namespace todolist_windows_form
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            RedmineAccessor.DownloadTicket("http://birdsoasis.info/issues.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+
             StoreManager sm = new StoreManager();
             // sm.createDataFile();
             // 設定値読み込み
