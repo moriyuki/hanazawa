@@ -32,7 +32,7 @@ namespace todolist_windows_form
             settings.RedmineKey = Encrypt.EncryptString(this.txtRedmineKey.Text, ENCRYPTPASSWORD);
 
 
-            String filename = "setting.config";
+            String filename = Common.settingfilename;
             BinaryFormatter bf = new BinaryFormatter();
             System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Create);
             bf.Serialize(fs, settings);
@@ -54,7 +54,7 @@ namespace todolist_windows_form
         private void FormSetting_Load(object sender, EventArgs e)
         {
             Settings settings = new Settings();
-            String filename = "setting.config";
+            String filename = Common.settingfilename;
             if(System.IO.File.Exists(filename))
             {
                 try

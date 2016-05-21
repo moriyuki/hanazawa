@@ -31,7 +31,7 @@ namespace todolist_windows_form
             // 設定値画面反映
             SetListItemControl();
 
- 
+
             //Timer
             this.timer1.Start();
         }
