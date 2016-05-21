@@ -11,7 +11,7 @@ namespace todolist_windows_form
     // ローカルデータ管理クラス
     class StoreManager
     {
-        private const String taskDataPath = "ToDoItem.xml";
+       
         private int IDManager;
 
         public StoreManager()
@@ -49,11 +49,11 @@ namespace todolist_windows_form
             {
                 // dataFile.Load("test.xml");
                 // XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText("./../../../../Document/redmine_sample.xml")));
-                if (!System.IO.File.Exists(taskDataPath))
+                if (!System.IO.File.Exists(Common.localtodoxml))
                 {
                     return;
                 }
-                XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText(taskDataPath, Encoding.GetEncoding("Shift-JIS"))));
+                XmlTextReader reader = new XmlTextReader(new StringReader(File.ReadAllText(Common.localtodoxml, Common.sjisenc)));
 
                 // System.Windows.Forms.MessageBox.Show("load success!");
                 while (reader.Read())
@@ -368,7 +368,7 @@ namespace todolist_windows_form
 
 
 
-            datafile.Save(taskDataPath);
+            datafile.Save(Common.localtodoxml);
         }
     }
 }

@@ -19,11 +19,11 @@ namespace todolist_windows_form
             string source = webclient.DownloadString(targeturl);
 
             byte[] temp = Encoding.UTF8.GetBytes(source);
-            byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding("shift_jis"), temp);
+            byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Common.sjisenc, temp);
 
-            string sjisstr = Encoding.GetEncoding("shift_jis").GetString(sjistemp);
+            string sjisstr = Common.sjisenc.GetString(sjistemp);
 
-            System.IO.File.WriteAllText("ToDoItem.xml", sjisstr, Encoding.GetEncoding("shift_jis"));
+            System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
         }
 
     }
