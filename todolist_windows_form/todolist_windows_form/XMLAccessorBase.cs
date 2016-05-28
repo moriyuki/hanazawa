@@ -27,8 +27,9 @@ namespace todolist_windows_form
         {
             private TagNameID _id;
             private String _name;
+            private object _val;
 
-            public TagList(TagNameID id, String name)
+            public TagList(TagNameID id, String name, object val)
             {
                 this._id = id;
                 this._name = name;
@@ -50,6 +51,7 @@ namespace todolist_windows_form
             private int _id;
             private String _name;
             private bool _is_closed;
+           
 
             public StatusItem(int id, String name, bool is_closed)
             {
@@ -76,6 +78,10 @@ namespace todolist_windows_form
                 get;
                 set;
             }
+            public object val
+            {
+                get; set;
+            }
         }
 
         protected List<TagList> tag = new List<TagList>();
@@ -85,7 +91,7 @@ namespace todolist_windows_form
 
         public XMLAccessorBase()
         {
-            tag.Add(new TagList(TagNameID.Innertext, "id"));
+            tag.Add(new TagList(TagNameID.Innertext, "id", id.StatusItem.id));
             tag.Add(new TagList(TagNameID.Innertext, "name"));
         }
 
@@ -102,7 +108,7 @@ namespace todolist_windows_form
 
             while (reader.Read())
             {
-                if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("issue_status"))
+                if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals(this.parentnode))
                 {
                     StatusItem si = new StatusItem();
 
@@ -124,9 +130,6 @@ namespace todolist_windows_form
                             // id 読み込み
                             si.is_closed = bool.Parse(reader.ReadString());
                         }
-
-
-
                     }
                     status.Add(si);
                 }

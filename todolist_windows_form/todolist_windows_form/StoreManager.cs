@@ -65,6 +65,8 @@ namespace todolist_windows_form
                         DataModel.ticket ticket = new DataModel.ticket();
                         ticket.initTicket();
 
+                        bool a = false;
+                        a = bool.Parse("true");
 
                         while (reader.Read())
                         {

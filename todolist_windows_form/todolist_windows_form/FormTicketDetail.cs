@@ -56,6 +56,8 @@ namespace todolist_windows_form
             this.cmbPriority.Text = tck.priority.name.ToString();
             this.cmbTracker.Text = tck.tracker.name.ToString();
             this.tbDescription.Text = tck.description;
+
+            this.cmbAuthor.SelectedItem = this.cmbAuthor.Items[0];
         }
 
 

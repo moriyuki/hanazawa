@@ -79,6 +79,7 @@
       <DependentUpon>uc_ticketItem.cs</DependentUpon>
     </Compile>
     <Compile Include="XMLAccessorBase.cs" />
+    <Compile Include="XMLAccessorTracker.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
