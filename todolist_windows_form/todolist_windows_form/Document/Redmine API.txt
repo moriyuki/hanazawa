@@ -5,5 +5,7 @@ URL : http://birdsoasis.info/issues.xml?project_id=8&key=<<KEY>>
 KEY : 990ef7243dd09f531047ed4fb99e5cc759c330cf
 
 トラッカー一覧取得
-URL　:http://birdsoasis.info/trackers.xml?project_id=8&key=<<KEY>>
+URL：http://birdsoasis.info/trackers.xml?project_id=8&key=<<KEY>>
 
+ステータス一覧取得
+URL：http://birdsoasis.info/issue_statuses.xml?project_id=8&key=<<KEY>>
