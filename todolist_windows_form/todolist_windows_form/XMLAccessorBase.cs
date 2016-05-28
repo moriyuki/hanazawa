@@ -102,13 +102,20 @@ namespace todolist_windows_form
 
             while (reader.Read())
             {
-                if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("issue_status"))
+                if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals(parentnode))
                 {
                     StatusItem si = new StatusItem();
 
                     while (reader.Read())
                     {
-
+                        foreach(TagList taglist in tag)
+                        {
+                            if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals(taglist.name))
+                            {
+                                // id 読み込み
+                                si.id = int.Parse(reader.ReadString());
+                            }
+                        }
                         if (reader.NodeType.Equals(XmlNodeType.Element) && reader.Name.Equals("id"))
                         {
                             // id 読み込み
