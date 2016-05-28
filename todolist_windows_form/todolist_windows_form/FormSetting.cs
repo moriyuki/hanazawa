@@ -28,8 +28,11 @@ namespace todolist_windows_form
             settings.ServerURL = this.txtServerURL.Text;
             settings.Password = Encrypt.EncryptString(this.txtPassword.Text,ENCRYPTPASSWORD);
 
+            settings.RedmineURL = Encrypt.EncryptString(this.txtRedmineURL.Text, ENCRYPTPASSWORD);
+            settings.RedmineKey = Encrypt.EncryptString(this.txtRedmineKey.Text, ENCRYPTPASSWORD);
 
-            String filename = "setting.config";
+
+            String filename = Common.settingfilename;
             BinaryFormatter bf = new BinaryFormatter();
             System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Create);
             bf.Serialize(fs, settings);
@@ -51,7 +54,7 @@ namespace todolist_windows_form
         private void FormSetting_Load(object sender, EventArgs e)
         {
             Settings settings = new Settings();
-            String filename = "setting.config";
+            String filename = Common.settingfilename;
             if(System.IO.File.Exists(filename))
             {
                 try
@@ -72,12 +75,23 @@ namespace todolist_windows_form
             if(System.IO.File.Exists(filename))
             {
                 this.txtPassword.Text = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+
+                this.txtRedmineURL.Text = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
+                this.txtRedmineKey.Text = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
             }
             else
             {
                 this.txtPassword.Text = settings.Password;
+
+                this.txtRedmineURL.Text = settings.RedmineURL;
+                this.txtRedmineKey.Text = settings.RedmineKey;
             }
             
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

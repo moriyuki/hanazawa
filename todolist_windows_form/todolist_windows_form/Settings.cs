@@ -14,6 +14,9 @@ namespace todolist_windows_form
             String _user;
             String _password;
 
+            String _redmineURL;
+            String _redmineKey;
+
         public String ServerURL {
             get { return _serverURL; }
             set { _serverURL = value; }
@@ -28,11 +31,26 @@ namespace todolist_windows_form
             get { return _password; }
             set { _password = value; }
         }
+        
+        public String RedmineURL
+        {
+            get { return _redmineURL; }
+            set { _redmineURL = value; }
+        }
+
+        public String RedmineKey
+        {
+            get { return _redmineKey; }
+            set { _redmineKey = value; }
+        }
 
         public Settings() {
             _serverURL = String.Empty;
             _user = String.Empty;
             _password = String.Empty;
+
+            _redmineURL = String.Empty;
+            _redmineKey = String.Empty;
         }
 
     }

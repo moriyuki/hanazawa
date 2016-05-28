@@ -54,6 +54,7 @@ namespace todolist_windows_form
             }
         }
 
+
         public struct ticket
         {
 
@@ -77,6 +78,8 @@ namespace todolist_windows_form
             public DateTime closed_on;
 
             public bool done;
+
+            
 
             // チケット構成要素初期化
             public void initTicket()
