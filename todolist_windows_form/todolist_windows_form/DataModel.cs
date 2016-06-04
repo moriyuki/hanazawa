@@ -192,19 +192,58 @@ namespace todolist_windows_form
 
                 // すべて同じ場合はTrue
                 return true;
-            }
-
-            // public 
+            } 
         }
-        // end struct
 
         public List<ticket> tickets = new List<ticket>();
 
-        // 新規チケット追加
-        // チケット編集
-        // チケット完了
-        // チケット削除
+        // チケットのステータス管理用クラス
+        public class StatusItem
+        {
+            private int _id;
+            private String _name;
+            private bool _is_closed;
 
 
+            public StatusItem(int id, String name, bool is_closed)
+            {
+                this._id = id;
+                this._name = name;
+                this._is_closed = is_closed;
+            }
+            public StatusItem() { }
+            public int id { get; set; }
+            public String name { get; set; }
+            public bool is_closed { get; set; }
+        }
+
+        public List<StatusItem> statusItems = new List<StatusItem>();
+
+        // チケットのトラッカー管理用クラス
+        public class TrackerItem
+        {
+            private int _id;
+            private String _name;
+            private idname _defaultstatus;
+
+
+            public TrackerItem(int id, String name, idname defaultstatus)
+            {
+                this._id = id;
+                this._name = name;
+                this._defaultstatus = defaultstatus;
+            }
+            public TrackerItem() { }
+            public int id { get; set; }
+            public String name { get; set; }
+            public idname defaultstatus { get; set; }
+        }
+
+        public List<TrackerItem> trackerItems = new List<TrackerItem>();
+
+        public static implicit operator DataModel(idname v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

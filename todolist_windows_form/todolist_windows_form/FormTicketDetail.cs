@@ -41,6 +41,16 @@ namespace todolist_windows_form
             this.tck = t;
             this.ShowTicketDate();
         }
+        public class comboboxitem
+        {
+            public int id;
+            public String name;
+
+            public override string ToString()
+            {
+                return name;
+            }
+        }
 
         // チケットの内容を表示する
         private void ShowTicketDate()
@@ -52,7 +62,18 @@ namespace todolist_windows_form
             this.lblUpdated.Text = "更新日：" + tck.updated_on.ToString();
             this.cmbProject.Text = tck.project.name.ToString();
             this.cmbAuthor.Text = tck.auther.name.ToString();
-            this.cmbbStatus.Text = tck.status.name.ToString();
+
+            comboboxitem cbi = new comboboxitem();
+            cbi.id = 0;
+            cbi.name = "abc";
+
+            //this.cmbbStatus.Items.Add("未着手");
+            //this.cmbbStatus.Items.Add("作業中");
+            //this.cmbbStatus.Items.Add("完了");
+            this.cmbbStatus.Items.Add(cbi);
+            this.cmbbStatus.SelectedItem = this.cmbbStatus.Items[0];
+
+            //this.cmbbStatus.Text = tck.status.name.ToString();
             this.cmbPriority.Text = tck.priority.name.ToString();
             this.cmbTracker.Text = tck.tracker.name.ToString();
             this.tbDescription.Text = tck.description;
