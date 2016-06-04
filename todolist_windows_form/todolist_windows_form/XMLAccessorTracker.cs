@@ -53,11 +53,10 @@ namespace todolist_windows_form
                                 idnameVal.name = atr.InnerText;
                             }
                         }
-
                         ti.defaultstatus = idnameVal;
-                        dm.trackerItems.Add(ti);
                     }
                 }
+                dm.trackerItems.Add(ti);
             }
         }
     }
