@@ -38,7 +38,7 @@ namespace todolist_windows_form
             XMLAccessorTracker tracker = new XMLAccessorTracker();
             tracker.Download("http://birdsoasis.info/trackers.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
             DataModel dm = DataModel.GetInstance();
-            // MessageBox.Show(dm.trackerItems.Count.ToString());
+            MessageBox.Show(dm.trackerItems.Count.ToString());
         }
 
         // ToDolistItemControlを設置する
