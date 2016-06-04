@@ -13,6 +13,7 @@ namespace todolist_windows_form
     public partial class FormTicketDetail : Form
     {
         private DataModel.ticket tck;
+        private DataModel dm = DataModel.GetInstance();
         
         // チケット 詳細のプロパティ
         public DataModel.ticket ticketDetail
@@ -41,16 +42,6 @@ namespace todolist_windows_form
             this.tck = t;
             this.ShowTicketDate();
         }
-        public class comboboxitem
-        {
-            public int id;
-            public String name;
-
-            public override string ToString()
-            {
-                return name;
-            }
-        }
 
         // チケットの内容を表示する
         private void ShowTicketDate()
@@ -63,22 +54,34 @@ namespace todolist_windows_form
             this.cmbProject.Text = tck.project.name.ToString();
             this.cmbAuthor.Text = tck.auther.name.ToString();
 
-            comboboxitem cbi = new comboboxitem();
-            cbi.id = 0;
-            cbi.name = "abc";
+            // ステータスアイテム追加、選択
+            DataModel.StatusItem selectedsi = new DataModel.StatusItem();
+            foreach (DataModel.StatusItem si in dm.statusItems)
+            {
+                this.cmbbStatus.Items.Add(si);
+                if (si.id.Equals(tck.status.id))
+                {
+                    selectedsi = si;
+                }
+            }
+            this.cmbbStatus.SelectedItem = selectedsi;
 
-            //this.cmbbStatus.Items.Add("未着手");
-            //this.cmbbStatus.Items.Add("作業中");
-            //this.cmbbStatus.Items.Add("完了");
-            this.cmbbStatus.Items.Add(cbi);
-            this.cmbbStatus.SelectedItem = this.cmbbStatus.Items[0];
-
-            //this.cmbbStatus.Text = tck.status.name.ToString();
+            // 優先度
             this.cmbPriority.Text = tck.priority.name.ToString();
-            this.cmbTracker.Text = tck.tracker.name.ToString();
-            this.tbDescription.Text = tck.description;
 
-            this.cmbAuthor.SelectedItem = this.cmbAuthor.Items[0];
+            // トラッカーアイテム追加、選択
+            DataModel.TrackerItem selectedti = new DataModel.TrackerItem();
+            foreach (DataModel.TrackerItem ti in dm.trackerItems)
+            {
+                this.cmbTracker.Items.Add(ti);
+                if (ti.id.Equals(tck.tracker.id))
+                {
+                    selectedti = ti;
+                }
+            }
+            this.cmbTracker.SelectedItem = selectedti;
+
+            this.tbDescription.Text = tck.description;
         }
 
 

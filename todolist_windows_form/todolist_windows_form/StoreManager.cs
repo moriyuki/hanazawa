@@ -372,5 +372,13 @@ namespace todolist_windows_form
 
             datafile.Save(Common.localtodoxml);
         }
+
+        // 更新用XMLデータ作成（XMLファイルに）
+        public byte[] UpdateIssue(DataModel.ticket tck)
+        {
+            // チケット情報から更新用XML文字列を作成
+            return null;
+        }
+
     }
 }

@@ -215,6 +215,11 @@ namespace todolist_windows_form
             public int id { get; set; }
             public String name { get; set; }
             public bool is_closed { get; set; }
+
+            public override string ToString()
+            {
+                return this.name;
+            }
         }
 
         public List<StatusItem> statusItems = new List<StatusItem>();
@@ -237,6 +242,11 @@ namespace todolist_windows_form
             public int id { get; set; }
             public String name { get; set; }
             public idname defaultstatus { get; set; }
+
+            public override string ToString()
+            {
+                return this.name;
+            }
         }
 
         public List<TrackerItem> trackerItems = new List<TrackerItem>();

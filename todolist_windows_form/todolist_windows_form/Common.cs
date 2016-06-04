@@ -12,6 +12,11 @@ namespace todolist_windows_form
         public static readonly string localtodoxml = "ToDoItem.xml";
         public static readonly string settingfilename = "setting.config";
 
+    }
 
+    // Upload時の引数管理
+    public class UploadIssueEventArgs : EventArgs
+    {
+        public String UploadType;
     }
 }

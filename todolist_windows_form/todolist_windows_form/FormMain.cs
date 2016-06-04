@@ -37,7 +37,7 @@ namespace todolist_windows_form
             // ステータス情報読み込み
             XMLAccessorStatus status = new XMLAccessorStatus();
             status.Download("http://birdsoasis.info/issue_statuses.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
-            MessageBox.Show(dm.statusItems.Count.ToString());
+            // MessageBox.Show(dm.statusItems.Count.ToString());
 
             // 設定値画面反映
             SetListItemControl();
@@ -117,6 +117,8 @@ namespace todolist_windows_form
 
         private void SaveData(object sender, EventArgs e)
         {
+            UploadIssueEventArgs uiea = (UploadIssueEventArgs)e;
+            MessageBox.Show(uiea.UploadType);
             uc_ticketItem item = (uc_ticketItem)sender;
             DataModel dm = DataModel.GetInstance();
             if (item.myTicket.id == 0)
@@ -137,7 +139,6 @@ namespace todolist_windows_form
                 {
                     if (dm.tickets[i].id.Equals(item.myTicket.id))
                     {
-                        //                       MessageBox.Show("Regal Ticket");
                         dm.tickets[i] = item.myTicket;
                     }
                 }
@@ -145,7 +146,6 @@ namespace todolist_windows_form
             }
 
             // データ保存
-            // MessageBox.Show("SaveData:" + item.myTicket.subject);
             StoreManager sm = new StoreManager();
             sm.saveTaskstoXmlFile();
 

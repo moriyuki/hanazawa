@@ -9,6 +9,7 @@ namespace todolist_windows_form
 {
     class RedmineAccessor
     {
+        // チケット読み込み
         public static void DownloadTicket(string url, string key)
         {
             var webclient = new WebClient();
@@ -26,5 +27,15 @@ namespace todolist_windows_form
             System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
         }
 
+        // チケット更新、作成
+        public static void UploadTicket(string url, string key, byte[] issue, String httpMethod = "PUT")
+        {
+            var webclient = new WebClient();
+            webclient.Encoding = Encoding.UTF8;
+
+            byte[] response = webclient.UploadData(url + key, httpMethod, issue);
+
+            // responseを読み込み、エラーの場合はユーザに通知
+        }
     }
 }

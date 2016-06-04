@@ -84,7 +84,6 @@ namespace todolist_windows_form
             {
                 this.tck = ftd.ticketDetail;
                 this.txbTicketSubject.Text = tck.subject;
-                MessageBox.Show(tck.subject);
                 this.SaveTicket();
             }
         }
@@ -106,10 +105,13 @@ namespace todolist_windows_form
             {
                 // Event 通知
                 tck.updated_on = DateTime.Now;
-                DataChenged(this, new EventArgs());
+                UploadIssueEventArgs uiea = new UploadIssueEventArgs();
+                uiea.UploadType = "PUT";
+                DataChenged(this, uiea);
             }
         }
 
+        // チケットの完了イベント処理
         private void chkDone_CheckedChanged(object sender, EventArgs e)
         {
             this.tck.done = !(this.tck.done);
