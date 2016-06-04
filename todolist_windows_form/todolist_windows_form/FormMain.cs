@@ -35,6 +35,9 @@ namespace todolist_windows_form
             // MessageBox.Show(dm.trackerItems.Count.ToString());
 
             // ステータス情報読み込み
+            XMLAccessorStatus status = new XMLAccessorStatus();
+            status.Download("http://birdsoasis.info/issue_statuses.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            MessageBox.Show(dm.statusItems.Count.ToString());
 
             // 設定値画面反映
             SetListItemControl();

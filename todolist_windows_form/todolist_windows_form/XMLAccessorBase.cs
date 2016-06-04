@@ -13,7 +13,6 @@ namespace todolist_windows_form
     {
         String _source;
 
-
         public enum TagNameID { Innertext, IDnameattribute, }
 
         public class TagList

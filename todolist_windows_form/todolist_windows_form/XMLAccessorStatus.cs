@@ -41,10 +41,11 @@ namespace todolist_windows_form
                     }
                     else if (elm.Name.Equals("is_closed"))
                     {
-                        si.is_closed = bool.Parse(elm.InnerText);   
+                        si.is_closed = bool.Parse(elm.InnerText);
                     }
                 }
                 dm.statusItems.Add(si);
             }
         }
+    }
 }
