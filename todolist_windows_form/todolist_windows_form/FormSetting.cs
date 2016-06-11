@@ -7,37 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace todolist_windows_form
 {
     public partial class FormSetting : Form
     {
-        const string ENCRYPTPASSWORD = "うどん自販機";
-
         public FormSetting()
         {
             InitializeComponent();
         }
 
+        // 設定情報保存
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            // 画面から内部データ
+            Settings settings = Settings.Instance;
             settings.User = this.txtUser.Text;
             settings.ServerURL = this.txtServerURL.Text;
-            settings.Password = Encrypt.EncryptString(this.txtPassword.Text,ENCRYPTPASSWORD);
+            settings.Password = this.txtPassword.Text;
 
-            settings.RedmineURL = Encrypt.EncryptString(this.txtRedmineURL.Text, ENCRYPTPASSWORD);
-            settings.RedmineKey = Encrypt.EncryptString(this.txtRedmineKey.Text, ENCRYPTPASSWORD);
+            settings.RedmineURL = this.txtRedmineURL.Text;
+            settings.RedmineKey = this.txtRedmineKey.Text;
 
-
-            String filename = Common.settingfilename;
-            BinaryFormatter bf = new BinaryFormatter();
-            System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Create);
-            bf.Serialize(fs, settings);
-            fs.Close();
-
+            SettingAccessor sa = new SettingAccessor();
+            sa.SaveSettingData();
             this.Close();
         }
 
@@ -46,52 +40,20 @@ namespace todolist_windows_form
             this.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormSetting_Load(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            SettingAccessor sa = new SettingAccessor();
+            sa.LoadFromSettingFile();
+            Settings settings = Settings.Instance;
             String filename = Common.settingfilename;
-            if(System.IO.File.Exists(filename))
-            {
-                try
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
-                    settings = (Settings)bf.Deserialize(fs);
-                    fs.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error");
-                }
 
-            }
+            // 画面に反映
             this.txtServerURL.Text = settings.ServerURL;
             this.txtUser.Text = settings.User;
-            if(System.IO.File.Exists(filename))
-            {
-                this.txtPassword.Text = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+            this.txtPassword.Text = settings.Password;
 
-                this.txtRedmineURL.Text = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
-                this.txtRedmineKey.Text = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
-            }
-            else
-            {
-                this.txtPassword.Text = settings.Password;
-
-                this.txtRedmineURL.Text = settings.RedmineURL;
-                this.txtRedmineKey.Text = settings.RedmineKey;
-            }
-            
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            this.txtRedmineURL.Text = settings.RedmineURL;
+            this.txtRedmineKey.Text = settings.RedmineKey;            
         }
     }
 }

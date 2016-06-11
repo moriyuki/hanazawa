@@ -12,11 +12,7 @@ namespace todolist_windows_form
         private static DataModel dm = new DataModel();
         public int IDManager;
 
-        private DataModel()
-        {
-            // インスタンスが生成されます
-            IDManager = 0;
-        }
+
 
         public static DataModel GetInstance()
         {
@@ -255,5 +251,8 @@ namespace todolist_windows_form
         {
             throw new NotImplementedException();
         }
+
+        
+
     }
 }

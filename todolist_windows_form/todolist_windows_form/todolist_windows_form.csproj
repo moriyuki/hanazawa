@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingAccessor.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StoreManager.cs" />
     <Compile Include="uc_ticketItem.cs">

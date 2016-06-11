@@ -45,14 +45,21 @@ namespace todolist_windows_form
                 out key, rijndael.BlockSize, out iv);
             rijndael.Key = key;
             rijndael.IV = iv;
-            byte[] sourcebyte = System.Convert.FromBase64String(sourcestring);
-            System.Security.Cryptography.ICryptoTransform decryptor =
-                rijndael.CreateDecryptor();
-            byte[] decbyte =
-                decryptor.TransformFinalBlock(sourcebyte, 0, sourcebyte.Length);
-            decryptor.Dispose();
 
-            return System.Text.Encoding.UTF8.GetString(decbyte);
+            if (String.IsNullOrEmpty(sourcestring))
+            {
+                return String.Empty;
+            }
+            else {
+                byte[] sourcebyte = System.Convert.FromBase64String(sourcestring);
+                System.Security.Cryptography.ICryptoTransform decryptor =
+                    rijndael.CreateDecryptor();
+                byte[] decbyte =
+                    decryptor.TransformFinalBlock(sourcebyte, 0, sourcebyte.Length);
+                decryptor.Dispose();
+
+                return System.Text.Encoding.UTF8.GetString(decbyte);
+            }
         }
     }
 }

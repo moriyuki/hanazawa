@@ -7,8 +7,28 @@ using System.Threading.Tasks;
 namespace todolist_windows_form
 {
     [Serializable()]
-    class Settings
+    public sealed class Settings 
     {
+        private static Settings _stt = new Settings();
+
+        public static Settings Instance
+        {
+            get
+            {
+                return _stt;
+            }
+        }
+
+        private Settings()
+        {
+            _serverURL = String.Empty;
+            _user = String.Empty;
+            _password = String.Empty;
+
+            _redmineURL = String.Empty;
+            _redmineKey = String.Empty;
+        }
+
         private
             String _serverURL;
             String _user;
@@ -43,15 +63,5 @@ namespace todolist_windows_form
             get { return _redmineKey; }
             set { _redmineKey = value; }
         }
-
-        public Settings() {
-            _serverURL = String.Empty;
-            _user = String.Empty;
-            _password = String.Empty;
-
-            _redmineURL = String.Empty;
-            _redmineKey = String.Empty;
-        }
-
     }
 }

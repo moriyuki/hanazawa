@@ -15,7 +15,14 @@ namespace todolist_windows_form
         // チケット一覧取得用URLを返す
         public static String GetIssueURL()
         {
-            return "";
+            Settings stt = Settings.Instance;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(stt.RedmineURL);
+            sb.Append("issues.xml/");
+            sb.Append("?project_id = 8");
+            sb.Append("&key=");
+            sb.Append(stt.RedmineKey);
+            return sb.ToString();
         }
         // トラッカー一覧取得用URLを返す
         public static String GetTrackersURL()

@@ -21,6 +21,7 @@ namespace todolist_windows_form
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Common.GetIssueURL();
             RedmineAccessor.DownloadTicket("http://birdsoasis.info/issues.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
 
             StoreManager sm = new StoreManager();
@@ -42,6 +43,9 @@ namespace todolist_windows_form
             // 設定値画面反映
             SetListItemControl();
 
+            // 設定情報読み込み
+            SettingAccessor sa = new SettingAccessor();
+            sa.LoadFromSettingFile();
 
             //Timer
             this.timer1.Start();
