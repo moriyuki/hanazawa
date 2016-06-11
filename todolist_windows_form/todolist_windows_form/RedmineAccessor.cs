@@ -27,9 +27,24 @@ namespace todolist_windows_form
             System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
         }
 
-        // チケット更新、作成
-        public static void UploadTicket(string url, string key, byte[] issue, String httpMethod = "PUT")
+        // チケット作成
+        public static void Createicket(string url, string key, byte[] issue)
         {
+            String httpMethod = "POST";
+            var webclient = new WebClient();
+            webclient.Encoding = Encoding.UTF8;
+
+            byte[] response = webclient.UploadData(url + key, httpMethod, issue);
+
+            // responseを読み込み、エラーの場合はユーザに通知
+        }
+
+        // チケット更新
+        public static void UpdateTicket(string url, string key, byte[] issue, String issue_id )
+        {
+            // POST:新規作成
+            // PUT: 更新
+            String httpMethod = "PUT";
             var webclient = new WebClient();
             webclient.Encoding = Encoding.UTF8;
 

@@ -12,6 +12,31 @@ namespace todolist_windows_form
         public static readonly string localtodoxml = "ToDoItem.xml";
         public static readonly string settingfilename = "setting.config";
 
+        // チケット一覧取得用URLを返す
+        public static String GetIssueURL()
+        {
+            return "";
+        }
+        // トラッカー一覧取得用URLを返す
+        public static String GetTrackersURL()
+        {
+            return "";
+        }
+        // ステータス一覧取得用URLを返す
+        public static String GetStatusesURL()
+        {
+            return "";
+        }
+        // チケット作成用URLを返す
+        public static String GetCreateIssueURL()
+        {
+            return "";
+        }
+        // チケット更新用URLを返す
+        public static String GetUpdateIssueURL()
+        {
+            return "";
+        }
     }
 
     // Upload時の引数管理

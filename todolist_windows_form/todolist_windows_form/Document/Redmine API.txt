@@ -9,3 +9,11 @@ URL：http://birdsoasis.info/trackers.xml?project_id=8&key=<<KEY>>
 
 ステータス一覧取得
 URL：http://birdsoasis.info/issue_statuses.xml?project_id=8&key=<<KEY>>
+
+
+SERVER_URL : http://birdsoasis.info/
+API_TYPE :   issues.xml/, trackers.xml/, issue_statuses.xml/, issues/[id].xml/ ...
+PROJECT_FILTER: ?project_id=8
+KEY : &key=[key]
+
+
