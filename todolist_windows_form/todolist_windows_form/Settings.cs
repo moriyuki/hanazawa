@@ -9,17 +9,8 @@ namespace todolist_windows_form
     [Serializable()]
     public sealed class Settings 
     {
-        private static Settings _stt = new Settings();
 
-        public static Settings Instance
-        {
-            get
-            {
-                return _stt;
-            }
-        }
-
-        private Settings()
+        public Settings()
         {
             _serverURL = String.Empty;
             _user = String.Empty;

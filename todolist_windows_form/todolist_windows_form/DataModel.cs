@@ -12,8 +12,6 @@ namespace todolist_windows_form
         private static DataModel dm = new DataModel();
         public int IDManager;
 
-
-
         public static DataModel GetInstance()
         {
             return dm;
@@ -252,7 +250,47 @@ namespace todolist_windows_form
             throw new NotImplementedException();
         }
 
-        
+        // İ’èî•ñ•ÛƒNƒ‰ƒX
+        public class Settings
+        {
+            public
+                String _serverURL;
+                String _user;
+                String _password;
+
+                String _redmineURL;
+                String _redmineKey;
+
+            public String ServerURL
+            {
+                get { return _serverURL; }
+                set { _serverURL = value; }
+            }
+            public String User
+            {
+                get { return _user; }
+                set { _user = value; }
+            }
+            public String Password
+            {
+                get { return _password; }
+                set { _password = value; }
+            }
+
+            public String RedmineURL
+            {
+                get { return _redmineURL; }
+                set { _redmineURL = value; }
+            }
+
+            public String RedmineKey
+            {
+                get { return _redmineKey; }
+                set { _redmineKey = value; }
+            }
+
+        }
+        public Settings settings = new Settings();
 
     }
 }

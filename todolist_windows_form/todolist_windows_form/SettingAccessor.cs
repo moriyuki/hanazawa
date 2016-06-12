@@ -14,8 +14,9 @@ namespace todolist_windows_form
         // ファイルから読み込み
         public void LoadFromSettingFile()
         {
-            Settings settings = Settings.Instance;
+            Settings settings = new Settings();
             String filename = Common.settingfilename;
+            DataModel dm = DataModel.GetInstance();
             if (System.IO.File.Exists(filename))
             {
                 try
@@ -23,32 +24,36 @@ namespace todolist_windows_form
                     BinaryFormatter bf = new BinaryFormatter();
                     System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
                     settings = (Settings)bf.Deserialize(fs);
-                    //settings.ServerURL  = stt.ServerURL;
+
+                    dm.settings.ServerURL = settings.ServerURL;
+                    dm.settings.User = settings.User;
+                    // 複合化
+                    dm.settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+                    dm.settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
+                    dm.settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
+
                     fs.Close();
                 }
                 catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
                 }
-
-                //settings.ServerURL = 
-                // 複合化
-                settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
-                settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
-                settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
-
             }
         }
 
         // 内部データを保存
         public void SaveSettingData()
         {
-            Settings settings = Settings.Instance;
+            Settings settings = new Settings();
 
+            DataModel dm = DataModel.GetInstance();
+
+            settings.ServerURL = dm.settings.ServerURL;
+            settings.User = dm.settings.User;
             // 暗号化処理
-            settings.Password = Encrypt.EncryptString(settings.Password, ENCRYPTPASSWORD);
-            settings.RedmineURL = Encrypt.EncryptString(settings.RedmineURL, ENCRYPTPASSWORD);
-            settings.RedmineKey = Encrypt.EncryptString(settings.RedmineKey, ENCRYPTPASSWORD);
+            settings.Password = Encrypt.EncryptString(dm.settings.Password, ENCRYPTPASSWORD);
+            settings.RedmineURL = Encrypt.EncryptString(dm.settings.RedmineURL, ENCRYPTPASSWORD);
+            settings.RedmineKey = Encrypt.EncryptString(dm.settings.RedmineKey, ENCRYPTPASSWORD);
 
             // 内部データから設定ファイル
             String filename = Common.settingfilename;

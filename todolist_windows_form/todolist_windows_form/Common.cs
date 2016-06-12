@@ -15,7 +15,7 @@ namespace todolist_windows_form
         // チケット一覧取得用URLを返す
         public static String GetIssueURL()
         {
-            Settings stt = Settings.Instance;
+            Settings stt = new Settings();
             StringBuilder sb = new StringBuilder();
             sb.Append(stt.RedmineURL);
             sb.Append("issues.xml/");
