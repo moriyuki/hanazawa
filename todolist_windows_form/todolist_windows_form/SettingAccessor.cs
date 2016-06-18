@@ -19,24 +19,28 @@ namespace todolist_windows_form
             DataModel dm = DataModel.GetInstance();
             if (System.IO.File.Exists(filename))
             {
-                try
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
-                    settings = (Settings)bf.Deserialize(fs);
 
-                    dm.settings.ServerURL = settings.ServerURL;
-                    dm.settings.User = settings.User;
-                    // 複合化
-                    dm.settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
-                    dm.settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
-                    dm.settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
-
-                    fs.Close();
-                }
-                catch (Exception ex)
+                using (System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open))
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
+                    try
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        // System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
+                        settings = (Settings)bf.Deserialize(fs);
+
+                        dm.settings.ServerURL = settings.ServerURL;
+                        dm.settings.User = settings.User;
+                        // 複合化
+                        dm.settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+                        dm.settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
+                        dm.settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
+
+                        fs.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
+                    }
                 }
             }
         }
