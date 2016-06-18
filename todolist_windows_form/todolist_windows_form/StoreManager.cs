@@ -260,7 +260,12 @@ namespace todolist_windows_form
             return dt;
         }
 
+        //public void saveTaskstoXmlFile(mode) { // ベースのXML作成}
+        //public void saveTaskstoXmlFile(DataModel) { // 現行}
+        //public void saveTaskstoXmlFile(ticket) { // 更新XML作成}
+
         // データを書き込むメソッド（XMLファイルに）
+
         public void saveTaskstoXmlFile()
         {
             // 内部データを取得
@@ -278,7 +283,7 @@ namespace todolist_windows_form
 
             for (int i = 0; i < dm.tickets.Count; i++)
             {
-
+                // ここを関数化（チケットデータを引数に）
                 XmlElement issue = datafile.CreateElement("issue");
 
                 XmlElement id = datafile.CreateElement("id");
@@ -377,6 +382,15 @@ namespace todolist_windows_form
         public byte[] UpdateIssue(DataModel.ticket tck)
         {
             // チケット情報から更新用XML文字列を作成
+            // issue :
+            //<? xml version = "1.0" ?>
+            //< issue >
+            //  < subject > Example </ subject >
+            //  < project_id > 1 </ project_id >
+            //  < priority_id > 4 </ priority_id >
+            //</ issue >
+
+
             return null;
         }
 

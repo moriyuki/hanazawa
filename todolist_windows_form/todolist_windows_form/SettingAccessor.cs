@@ -22,27 +22,32 @@ namespace todolist_windows_form
 
                 using (System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open))
                 {
-                    try
-                    {
-                        BinaryFormatter bf = new BinaryFormatter();
+                try
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
                         // System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
-                        settings = (Settings)bf.Deserialize(fs);
+                    settings = (Settings)bf.Deserialize(fs);
 
-                        dm.settings.ServerURL = settings.ServerURL;
-                        dm.settings.User = settings.User;
-                        // 複合化
-                        dm.settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
-                        dm.settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
-                        dm.settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
+                    dm.settings.ServerURL = settings.ServerURL;
+                    dm.settings.User = settings.User;
+                    // 複合化
+                    dm.settings.Password = Encrypt.DecryptString(settings.Password, ENCRYPTPASSWORD);
+                    dm.settings.RedmineURL = Encrypt.DecryptString(settings.RedmineURL, ENCRYPTPASSWORD);
+                    dm.settings.RedmineKey = Encrypt.DecryptString(settings.RedmineKey, ENCRYPTPASSWORD);
 
-                        fs.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
-                    }
+                    fs.Close();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
+
+                }
+                finally
+                {
+                    fs.Close();
                 }
             }
+        }
         }
 
         // 内部データを保存

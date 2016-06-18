@@ -13,39 +13,43 @@ namespace todolist_windows_form
         {
             base.parentnode = "issue_status";
         }
-        public new void Download(String url, String key)
+        public new void Download(String url)
         {
             DataModel dm = DataModel.GetInstance();
+            try {
+                XmlNodeList statuses = base.Download(url);
 
-            XmlNodeList statuses = base.Download(url, key);
-
-            if (statuses == null)
-            {
-                return;
-            }
-
-            foreach (XmlElement parentelm in statuses)
-            {
-                DataModel.StatusItem si = new DataModel.StatusItem();
-
-                foreach (XmlElement elm in parentelm.ChildNodes)
+                if (statuses == null)
                 {
-
-                    if (elm.Name.Equals("id"))
-                    {
-                        si.id = int.Parse(elm.InnerText);
-                    }
-                    else if (elm.Name.Equals("name"))
-                    {
-                        si.name = elm.InnerText;
-                    }
-                    else if (elm.Name.Equals("is_closed"))
-                    {
-                        si.is_closed = bool.Parse(elm.InnerText);
-                    }
+                    return;
                 }
-                dm.statusItems.Add(si);
+
+                foreach (XmlElement parentelm in statuses)
+                {
+                    DataModel.StatusItem si = new DataModel.StatusItem();
+
+                    foreach (XmlElement elm in parentelm.ChildNodes)
+                    {
+
+                        if (elm.Name.Equals("id"))
+                        {
+                            si.id = int.Parse(elm.InnerText);
+                        }
+                        else if (elm.Name.Equals("name"))
+                        {
+                            si.name = elm.InnerText;
+                        }
+                        else if (elm.Name.Equals("is_closed"))
+                        {
+                            si.is_closed = bool.Parse(elm.InnerText);
+                        }
+                    }
+                    dm.statusItems.Add(si);
+                }
             }
-        }
+            catch(Exception ex){
+                
+            }
+            }
     }
 }

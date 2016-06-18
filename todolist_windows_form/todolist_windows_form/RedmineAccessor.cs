@@ -10,31 +10,47 @@ namespace todolist_windows_form
     class RedmineAccessor
     {
         // チケット読み込み
-        public static void DownloadTicket(string url, string key)
+        public static void DownloadTicket(string url)
         {
             var webclient = new WebClient();
             webclient.Encoding = Encoding.UTF8;
 
-            string targeturl = url + key;
+            string targeturl = url;
+            try
+            {
+                string source = webclient.DownloadString(targeturl);
+                byte[] temp = Encoding.UTF8.GetBytes(source);
+                byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Common.sjisenc, temp);
+                string sjisstr = Common.sjisenc.GetString(sjistemp);
+                System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
+            }
 
-            string source = webclient.DownloadString(targeturl);
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+         }
 
-            byte[] temp = Encoding.UTF8.GetBytes(source);
-            byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Common.sjisenc, temp);
+        // チケット作成 ticketデータ -> byte配列に変換
+        public static void Createticket(DataModel.ticket tic)
+        {
+            var webclient = new WebClient();
+            webclient.Encoding = Encoding.UTF8;
+            StoreManager sm = new StoreManager();
+            byte[] issue = sm.UpdateIssue(tic);
 
-            string sjisstr = Common.sjisenc.GetString(sjistemp);
-
-            System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
+            Createticket(Common.GetCreateIssueURL(), issue);
+            // responseを読み込み、エラーの場合はユーザに通知
         }
 
-        // チケット作成
-        public static void Createicket(string url, string key, byte[] issue)
+        // チケット作成  サーバ問い合わせ
+        private static void Createticket(string url, byte[] issue)
         {
             String httpMethod = "POST";
             var webclient = new WebClient();
             webclient.Encoding = Encoding.UTF8;
 
-            byte[] response = webclient.UploadData(url + key, httpMethod, issue);
+            byte[] response = webclient.UploadData(url, httpMethod, issue);
 
             // responseを読み込み、エラーの場合はユーザに通知
         }

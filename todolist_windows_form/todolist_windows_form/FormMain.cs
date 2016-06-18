@@ -21,8 +21,13 @@ namespace todolist_windows_form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Common.GetIssueURL();
-            RedmineAccessor.DownloadTicket("http://birdsoasis.info/issues.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+
+            // 設定情報読み込み
+            SettingAccessor sa = new SettingAccessor();
+            sa.LoadFromSettingFile();
+
+            // チケットダウンロード
+            RedmineAccessor.DownloadTicket(Common.GetIssueURL());
 
             StoreManager sm = new StoreManager();
             // sm.createDataFile();
@@ -32,20 +37,16 @@ namespace todolist_windows_form
             // トラッカー情報読み込み
             DataModel dm = DataModel.GetInstance();
             XMLAccessorTracker tracker = new XMLAccessorTracker();
-            tracker.Download("http://birdsoasis.info/trackers.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            tracker.Download(Common.GetTrackersURL());
             // MessageBox.Show(dm.trackerItems.Count.ToString());
 
             // ステータス情報読み込み
             XMLAccessorStatus status = new XMLAccessorStatus();
-            status.Download("http://birdsoasis.info/issue_statuses.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            status.Download(Common.GetStatusesURL());
             // MessageBox.Show(dm.statusItems.Count.ToString());
 
-            // 設定値画面反映
+            // チケット画面反映
             SetListItemControl();
-
-            // 設定情報読み込み
-            SettingAccessor sa = new SettingAccessor();
-            sa.LoadFromSettingFile();
 
             //Timer
             this.timer1.Start();
@@ -69,7 +70,7 @@ namespace todolist_windows_form
 
                 uc_ticketItem uc_item;
                 uc_item = new todolist_windows_form.uc_ticketItem();
-                uc_item.Name = "uc_ticketItem" + (i+1).ToString();
+                uc_item.Name = "uc_ticketItem" + (i + 1).ToString();
                 uc_item.Size = new System.Drawing.Size(604, 101);
                 uc_item.Location = new System.Drawing.Point(LAYOUT_MERGINE, LAYOUT_MERGINE + validTicketIndex++ * uc_item.Size.Height + LAYOUT_MERGINE * i);
                 uc_item.TabIndex = 0;
@@ -112,21 +113,24 @@ namespace todolist_windows_form
 
         private void ClearListItemControl()
         {
-            foreach( Control ctrl in this.panel1.Controls)
+            foreach (Control ctrl in this.panel1.Controls)
             {
                 ctrl.Dispose();
             }
             this.panel1.Controls.Clear();
         }
 
+        // 保存時のイベント
         private void SaveData(object sender, EventArgs e)
         {
             UploadIssueEventArgs uiea = (UploadIssueEventArgs)e;
             MessageBox.Show(uiea.UploadType);
+
             uc_ticketItem item = (uc_ticketItem)sender;
             DataModel dm = DataModel.GetInstance();
             if (item.myTicket.id == 0)
             {
+                // チケット追加時の処理
                 DataModel.ticket ticket = new DataModel.ticket();
                 ticket = item.myTicket;
                 ticket.id = dm.GetNextID();
@@ -136,9 +140,13 @@ namespace todolist_windows_form
 
                 ClearListItemControl();
                 SetListItemControl();
+
+                // サーバUPLOAD（PUT)
+                RedmineAccessor.Createticket(ticket);
             }
             else {
-
+                // チケット更新時の処理
+                // データモデルのデータ更新
                 for (int i = 0; i < dm.tickets.Count; i++)
                 {
                     if (dm.tickets[i].id.Equals(item.myTicket.id))
@@ -146,13 +154,13 @@ namespace todolist_windows_form
                         dm.tickets[i] = item.myTicket;
                     }
                 }
+                // サーバ　UPLOAD（POST)
 
             }
 
             // データ保存
             StoreManager sm = new StoreManager();
             sm.saveTaskstoXmlFile();
-
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
