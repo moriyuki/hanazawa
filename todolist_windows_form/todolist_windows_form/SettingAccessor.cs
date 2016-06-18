@@ -19,10 +19,12 @@ namespace todolist_windows_form
             DataModel dm = DataModel.GetInstance();
             if (System.IO.File.Exists(filename))
             {
+                
+                System.IO.FileStream fs = new System.IO.FileStream();
                 try
                 {
                     BinaryFormatter bf = new BinaryFormatter();
-                    System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open);
+                    fs= new System.IO.FileStream(filename, System.IO.FileMode.Open);
                     settings = (Settings)bf.Deserialize(fs);
 
                     dm.settings.ServerURL = settings.ServerURL;
@@ -37,6 +39,11 @@ namespace todolist_windows_form
                 catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
+
+                }
+                finally
+                {
+                    fs.Close();
                 }
             }
         }

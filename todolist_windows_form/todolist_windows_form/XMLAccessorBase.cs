@@ -48,12 +48,12 @@ namespace todolist_windows_form
             tag.Add(new TagList(TagNameID.Innertext, "name"));
         }
 
-        public XmlNodeList Download(string url, string key)
+        public XmlNodeList Download(string url)
         {
             var webclient = new WebClient();
             webclient.Encoding = Encoding.UTF8;
 
-            string targeturl = url + key;
+            string targeturl = url;
 
             this._source = webclient.DownloadString(targeturl);
 

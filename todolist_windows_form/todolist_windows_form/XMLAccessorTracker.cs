@@ -13,51 +13,56 @@ namespace todolist_windows_form
         {
             base.parentnode = "tracker";
         }
-        public new void Download(String url, String key)
+        public new void Download(String url)
         {
             DataModel dm = DataModel.GetInstance();
+            try {
+                XmlNodeList trackers = base.Download(url);
 
-            XmlNodeList trackers = base.Download(url, key);
-
-            if (trackers == null)
-            {
-                return;
-            }
-
-            foreach (XmlElement parentelm in trackers)
-            {
-                DataModel.TrackerItem ti = new DataModel.TrackerItem();
-
-                foreach (XmlElement elm in parentelm.ChildNodes)
+                if (trackers == null)
                 {
-                   
-                    if (elm.Name.Equals("id"))
-                    {
-                        ti.id = int.Parse(elm.InnerText);
-                    }
-                    else if (elm.Name.Equals("name"))
-                    {
-                        ti.name = elm.InnerText;
-                    }
-                    else if (elm.Name.Equals("default_status"))
-                    {
-                        DataModel.idname idnameVal = new DataModel.idname();
-                        foreach (XmlAttribute atr in elm.Attributes)
-                        {
-                            if( atr.Name == "id")
-                            {
-                                idnameVal.id = int.Parse(atr.InnerText);
-                            }
-                            else if (atr.Name == "name")
-                            {
-                                idnameVal.name = atr.InnerText;
-                            }
-                        }
-                        ti.defaultstatus = idnameVal;
-                    }
+                    return;
                 }
-                dm.trackerItems.Add(ti);
+
+                foreach (XmlElement parentelm in trackers)
+                {
+                    DataModel.TrackerItem ti = new DataModel.TrackerItem();
+
+                    foreach (XmlElement elm in parentelm.ChildNodes)
+                    {
+
+                        if (elm.Name.Equals("id"))
+                        {
+                            ti.id = int.Parse(elm.InnerText);
+                        }
+                        else if (elm.Name.Equals("name"))
+                        {
+                            ti.name = elm.InnerText;
+                        }
+                        else if (elm.Name.Equals("default_status"))
+                        {
+                            DataModel.idname idnameVal = new DataModel.idname();
+                            foreach (XmlAttribute atr in elm.Attributes)
+                            {
+                                if (atr.Name == "id")
+                                {
+                                    idnameVal.id = int.Parse(atr.InnerText);
+                                }
+                                else if (atr.Name == "name")
+                                {
+                                    idnameVal.name = atr.InnerText;
+                                }
+                            }
+                            ti.defaultstatus = idnameVal;
+                        }
+                    }
+                    dm.trackerItems.Add(ti);
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
+        
     }
 }

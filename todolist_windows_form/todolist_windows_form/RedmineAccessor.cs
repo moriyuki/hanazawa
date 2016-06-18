@@ -10,22 +10,26 @@ namespace todolist_windows_form
     class RedmineAccessor
     {
         // チケット読み込み
-        public static void DownloadTicket(string url, string key)
+        public static void DownloadTicket(string url)
         {
             var webclient = new WebClient();
             webclient.Encoding = Encoding.UTF8;
 
-            string targeturl = url + key;
+            string targeturl = url;
+            try
+            {
+                string source = webclient.DownloadString(targeturl);
+                byte[] temp = Encoding.UTF8.GetBytes(source);
+                byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Common.sjisenc, temp);
+                string sjisstr = Common.sjisenc.GetString(sjistemp);
+                System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
+            }
 
-            string source = webclient.DownloadString(targeturl);
-
-            byte[] temp = Encoding.UTF8.GetBytes(source);
-            byte[] sjistemp = Encoding.Convert(Encoding.UTF8, Common.sjisenc, temp);
-
-            string sjisstr = Common.sjisenc.GetString(sjistemp);
-
-            System.IO.File.WriteAllText(Common.localtodoxml, sjisstr, Common.sjisenc);
-        }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+         }
 
         // チケット作成
         public static void Createicket(string url, string key, byte[] issue)

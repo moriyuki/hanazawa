@@ -21,8 +21,8 @@ namespace todolist_windows_form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Common.GetIssueURL();
-            RedmineAccessor.DownloadTicket("http://birdsoasis.info/issues.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            
+            RedmineAccessor.DownloadTicket(Common.GetIssueURL());
 
             StoreManager sm = new StoreManager();
             // sm.createDataFile();
@@ -32,12 +32,12 @@ namespace todolist_windows_form
             // トラッカー情報読み込み
             DataModel dm = DataModel.GetInstance();
             XMLAccessorTracker tracker = new XMLAccessorTracker();
-            tracker.Download("http://birdsoasis.info/trackers.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            tracker.Download(Common.GetTrackersURL());
             // MessageBox.Show(dm.trackerItems.Count.ToString());
 
             // ステータス情報読み込み
             XMLAccessorStatus status = new XMLAccessorStatus();
-            status.Download("http://birdsoasis.info/issue_statuses.xml?project_id=8&key=", "990ef7243dd09f531047ed4fb99e5cc759c330cf");
+            status.Download(Common.GetStatusesURL());
             // MessageBox.Show(dm.statusItems.Count.ToString());
 
             // 設定値画面反映
