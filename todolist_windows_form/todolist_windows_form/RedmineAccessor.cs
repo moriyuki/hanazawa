@@ -53,6 +53,7 @@ namespace todolist_windows_form
             byte[] response = webclient.UploadData(url, httpMethod, issue);
 
             // responseを読み込み、エラーの場合はユーザに通知
+            String strres = response.ToString();
         }
 
         // チケット更新

@@ -45,7 +45,16 @@ namespace todolist_windows_form
         // チケット作成用URLを返す
         public static String GetCreateIssueURL()
         {
-            return CreateURL("issues.xml/");
+            DataModel dm = DataModel.GetInstance();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(dm.settings.RedmineURL);
+            sb.Append("issues.xml/");
+            //sb.Append("?project_id = 8");
+            sb.Append("?key=");
+            sb.Append(dm.settings.RedmineKey);
+            return sb.ToString();
+
+            // return CreateURL("issues.xml/");
         }
 
         // チケット更新用URLを返す

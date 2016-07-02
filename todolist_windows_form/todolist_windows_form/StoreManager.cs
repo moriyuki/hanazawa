@@ -389,9 +389,35 @@ namespace todolist_windows_form
             //  < project_id > 1 </ project_id >
             //  < priority_id > 4 </ priority_id >
             //</ issue >
+            XmlDocument datafile = new XmlDocument();
+            //           XmlDeclaration declaration = datafile.CreateXmlDeclaration("1.0", "Shift-JIS", null);
+            //           declaration.Encoding = "Shift-JIS";
+            XmlDeclaration declaration = datafile.CreateXmlDeclaration("1.0", "UTF-8", null);
+            declaration.Encoding = "UTF-8";
 
+            XmlElement issue = datafile.CreateElement("issue");
 
-            return null;
+            datafile.AppendChild(declaration);
+            datafile.AppendChild(issue);
+
+            XmlElement subject = datafile.CreateElement("subject");
+            subject.InnerText = tck.subject;
+            issue.AppendChild(subject);
+
+            XmlElement project_id = datafile.CreateElement("project_id");
+            //           project_id.InnerText = tck.project.id.ToString();
+            project_id.InnerText = "8";
+            issue.AppendChild(project_id);
+
+            XmlElement priority_id = datafile.CreateElement("priority_id");
+            priority_id.InnerText = tck.priority.id.ToString();
+            issue.AppendChild(priority_id);
+
+            String strdatafile = datafile.OuterXml;
+
+            byte[] salt = System.Text.Encoding.GetEncoding("shift_jis").GetBytes(strdatafile);
+
+            return salt;
         }
 
     }
